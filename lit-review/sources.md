@@ -1,6 +1,6 @@
 ### Politics:
 
-News articles?
+News articles
 
 ### Media:
 

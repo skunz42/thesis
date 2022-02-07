@@ -1,6 +1,31 @@
-subreddit level conflicts
-social and anti-social homes
-controversial authors - trolls (kinda)
-conflicts are reciprocated
+- subreddit level conflicts - conflicts are reciprocated
+- social and anti-social homes - political subreddit vs local subreddit
+
+"To achieve this, we address a number of challenges. First
+among them is the lack of explicit group membership. Group
+‘membership’ in Reddit, and systems like it, can be vague.
+While subscriptions are possible, individuals can display
+member-like behaviors by posting to subreddits they are
+not part of. Such behaviors—subscription and posting—are
+not, however, a clear indication of the individual’s ‘social
+homes.’ An individual can display both social and anti-social
+behaviors within the community via posting. What we seek
+is not simply identifying an individual’s ‘home’ but to also
+discriminate between social homes and anti-social homes.
+
+To achieve this separation, we apply a definition that ext
+ends Brunton’s construct of spam (Brunton 2012): a community defines spam as (messaging) behavior that is not consistent with its rules and norms. That is, we seek to separate
+norm-complaint behaviors that indicate social membership
+and those that are norm-violating (indicating an anti-social
+home). Rather than relying on a global definition of norms,
+we utilize the sanctioning and rewarding behavior of individual subreddits in response to norm violation and compliance
+respectively. An explicit measure we leverage is up- and
+down-voting on posted comments. While these are not the
+only sanctions and rewards, they are (a) consistently used,
+and (b) can be aggregated both at the individual and community levels. As we demonstrate below, inference based on
+these lower level signals can help identify broader conflicts."
+
+- controversial authors - trolls (kinda)
+
 
 USE: background and related work - reddit conflict

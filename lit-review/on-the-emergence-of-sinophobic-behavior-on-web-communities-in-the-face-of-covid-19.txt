@@ -1,0 +1,4 @@
+use method - temporal analysis
+detection of slurs ~ detection of crime-related words
+
+USE: analysis technique ideas / core paper

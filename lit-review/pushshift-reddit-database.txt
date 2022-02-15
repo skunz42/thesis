@@ -1,0 +1,4 @@
+- Pushshift - database of reddit posts - something to model own data off of
+- scraper follows similar pattern - ingest engine, postgreSQL, elastic search
+
+USE: core paper

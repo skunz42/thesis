@@ -4,6 +4,7 @@ import (
     "fmt"
     "os"
     "skunz42/post-scraper/src/credentials"
+    "skunz42/post-scraper/src/auth"
 )
 
 func main() {
@@ -17,4 +18,6 @@ func main() {
 
     fmt.Println(database_data.Db_Username)
     fmt.Println(config_data.Reddit_Username)
+
+    auth.GetToken(config_data)
 }

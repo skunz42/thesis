@@ -6,18 +6,12 @@ import (
 
 type Client struct {
     Client_Id string
-    client_secret string
+    Client_Secret string
     Access_Token string
     Reddit_Username string
-    reddit_password string
+    Reddit_Password string
     Http_Client *http.Client
     User_Agent string
-}
-
-type TokenStruct struct {
-    Scope string
-    AccessToken string `json:"access_token"`
-    ExpiresIn int `json:"expires_in"`
 }
 
 func setClientId(s string, c *Client) {
@@ -25,7 +19,7 @@ func setClientId(s string, c *Client) {
 }
 
 func setClientSecret(s string, c *Client) {
-    c.client_secret = s
+    c.Client_Secret = s
 }
 
 func setUsername(s string, c *Client) {
@@ -33,7 +27,7 @@ func setUsername(s string, c *Client) {
 }
 
 func setPassword(s string, c *Client) {
-    c.reddit_password = s
+    c.Reddit_Password = s
 }
 
 func setUserAgent(s string, c *Client) {

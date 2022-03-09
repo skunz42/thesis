@@ -5,6 +5,7 @@ import (
     "os"
     "skunz42/post-scraper/src/credentials"
     "skunz42/post-scraper/src/auth"
+    "skunz42/post-scraper/src/scraper"
 )
 
 func main() {
@@ -20,4 +21,9 @@ func main() {
     fmt.Println(config_data.Reddit_Username)
 
     auth.GetToken(config_data)
+
+    ids, _ := scraper.GetSubPosts(config_data)
+    for i := range(ids) {
+        fmt.Println(ids[i])
+    }
 }

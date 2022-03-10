@@ -35,5 +35,7 @@ func ConstructDbConnString(c *DbClient) (string){
         "password=%s dbname=%s sslmode=disable",
         c.Host, c.Port, c.Db_Username, c.db_password, c.Db_Name)
 
+    //psqlInfo = fmt.Sprintf("user=skunz1 host=localhost dbname=skunz1_test sslmode=disable")
+
     return psqlInfo
 }

@@ -6,6 +6,7 @@ import (
     "skunz42/post-scraper/src/credentials"
     "skunz42/post-scraper/src/auth"
     "skunz42/post-scraper/src/scraper"
+    "skunz42/post-scraper/src/database"
 )
 
 func main() {
@@ -17,13 +18,15 @@ func main() {
     config_data := credentials.MakeClient(os.Args[1])
     database_data := credentials.MakeDbClient(os.Args[1])
 
-    fmt.Println(database_data.Db_Username)
-    fmt.Println(config_data.Reddit_Username)
-
     auth.GetToken(config_data)
 
-    ids, _ := scraper.GetSubPosts(config_data)
-    for i := range(ids) {
-        fmt.Println(ids[i])
+    ids, blobs := scraper.GetSubPosts(config_data)
+
+    get_ping := database.PingDB(database_data)
+    if get_ping {
+        database.WriteIds(database_data, ids)
+        database.WriteBlobs(database_data, blobs)
+    } else {
+        fmt.Println("Could not ping database")
     }
 }

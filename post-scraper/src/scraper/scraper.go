@@ -6,14 +6,20 @@ import (
     "io/ioutil"
     "encoding/json"
     "skunz42/post-scraper/src/credentials"
+    "fmt"
 )
 
+// Get 50 most recent posts for all subs
+// Return a list of ids and a list of json blobs
 func GetSubPosts(c *credentials.Client) ([]string, [][]byte) {
 
     ids := make([]string, 0)
     blobs := make([][]byte, 0)
 
+    return ids, blobs
+
     for city := range(ALL_SUBS) {
+        fmt.Println("Fetching: " + ALL_SUBS[city])
         sub_endpoint_url := "https://oauth.reddit.com/r/" + ALL_SUBS[city] + "/new"
 
         url_params := url.Values{}

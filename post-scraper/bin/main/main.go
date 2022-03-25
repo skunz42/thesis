@@ -15,17 +15,23 @@ func main() {
         os.Exit(1)
     }
 
+    //TODO change to env
     config_data := credentials.MakeClient(os.Args[1])
     database_data := credentials.MakeDbClient(os.Args[1])
 
+    // Get a reddit token
     auth.GetToken(config_data)
 
-    ids, blobs := scraper.GetSubPosts(config_data)
+    // Fetch posts from reddit
+    posts, authors := scraper.GetSubPosts(config_data)
 
+    // Ping DB
     get_ping := database.PingDB(database_data)
+
+    // If the ping is successful
     if get_ping {
-        database.WriteIds(database_data, ids)
-        database.WriteBlobs(database_data, blobs)
+        database.WriteAuthors(database_data, authors)
+        database.WritePosts(database_data, posts)
     } else {
         fmt.Println("Could not ping database")
     }

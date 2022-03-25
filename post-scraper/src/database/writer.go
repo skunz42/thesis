@@ -7,9 +7,10 @@ import (
     "skunz42/post-scraper/src/credentials"
 )
 
+// Ping the database before attempting to make a connection
+// to void any lost data and recover from failure
 func PingDB(database_data *credentials.DbClient) (bool) {
     psql_info := credentials.ConstructDbConnString(database_data)
-    fmt.Println(psql_info)
     db, err := sql.Open("postgres", psql_info)
     if err != nil {
         fmt.Println("Error on open")
@@ -21,16 +22,15 @@ func PingDB(database_data *credentials.DbClient) (bool) {
     err = db.Ping()
     if err != nil {
         fmt.Println("Error on ping")
-        panic(err)
         return false
     }
     return true
 }
 
-func WriteIds(database_data *credentials.DbClient, ids []string) {
+func WriteAuthors(database_data *credentials.DbClient, authors []Author) {
 
 }
 
-func WriteBlobs(database_data *credentials.DbClient, blobs [][]byte) {
+func WritePosts(database_data *credentials.DbClient, posts []Post) {
 
 }

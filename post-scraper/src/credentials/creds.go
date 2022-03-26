@@ -4,7 +4,6 @@ import (
     "net/http"
     "time"
     "os"
-    "bufio"
 )
 
 const file_line_nums = 9
@@ -22,70 +21,30 @@ const db_lines = 4
 // Line 7: Database Password
 // Line 8: Databse Name
 
-func MakeClient(fn string) *Client {
+func MakeClient() *Client {
     c := &Client {
         Http_Client: &http.Client{ Timeout: time.Second * 10, },
     }
 
-    file, _ := os.Open(fn)
 
-    defer file.Close()
-
-    scanner := bufio.NewScanner(file)
-    i := 0
-
-    for scanner.Scan() {
-        if i >= reddit_lines {
-            break
-        }
-
-        if i%file_line_nums == 0 {
-            setClientId(scanner.Text(), c)
-        } else if i%file_line_nums == 1 {
-            setClientSecret(scanner.Text(), c)
-        } else if i%file_line_nums == 2 {
-            setUserAgent(scanner.Text(), c)
-        } else if i%file_line_nums == 3 {
-            setUsername(scanner.Text(), c)
-        } else if i%file_line_nums == 4 {
-            setPassword(scanner.Text(), c)
-        } else {
-            break
-        }
-
-        i += 1
-    }
+    setClientId(os.Getenv("REDDIT_CLIENT_ID"), c)
+    setClientSecret(os.Getenv("REDDIT_CLIENT_SECRET"), c)
+    setUserAgent(os.Getenv("REDDIT_USER_AGENT"), c)
+    setUsername(os.Getenv("REDDIT_USERNAME"), c)
+    setPassword(os.Getenv("REDDIT_PASSWORD"), c)
 
     return c
 }
 
-func MakeDbClient(fn string) *DbClient {
+func MakeDbClient() *DbClient {
     c := &DbClient {
         Port: 5432,
     }
 
-    file, _ := os.Open(fn)
-
-    defer file.Close()
-
-    scanner := bufio.NewScanner(file)
-    i := 0
-
-    for scanner.Scan() {
-        if i%file_line_nums == 5 {
-            setDbHost(scanner.Text(), c)
-        } else if i%file_line_nums == 6 {
-            setDbUsername(scanner.Text(), c)
-        } else if i%file_line_nums == 7 {
-            setDbPassword(scanner.Text(), c)
-        } else if i%file_line_nums == 8 {
-            setDbName(scanner.Text(), c)
-        } else if i >= file_line_nums {
-            break
-        }
-
-        i += 1
-    }
+    setDbHost(os.Getenv("DB_HOSTNAME"), c)
+    setDbUsername(os.Getenv("DB_USERNAME"), c)
+    setDbPassword(os.Getenv("DB_PASSWORD"), c)
+    setDbName(os.Getenv("DB_NAME"), c)
 
     return c
 }

@@ -2,7 +2,6 @@ package main
 
 import (
     "fmt"
-    "os"
     "skunz42/post-scraper/src/credentials"
     "skunz42/post-scraper/src/auth"
     "skunz42/post-scraper/src/scraper"
@@ -10,14 +9,8 @@ import (
 )
 
 func main() {
-    if len(os.Args) != 2 {
-        fmt.Println("Arguments: <user credentials>")
-        os.Exit(1)
-    }
-
-    //TODO change to env
-    config_data := credentials.MakeClient(os.Args[1])
-    database_data := credentials.MakeDbClient(os.Args[1])
+    config_data := credentials.MakeClient()
+    database_data := credentials.MakeDbClient()
 
     // Get a reddit token
     auth.GetToken(config_data)

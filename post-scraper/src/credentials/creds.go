@@ -6,21 +6,6 @@ import (
     "os"
 )
 
-const file_line_nums = 9
-const reddit_lines = 5
-const db_lines = 4
-
-// FORMAT
-// Line 0: Reddit Client ID
-// Line 1: Reddit Client Secret
-// Line 2: Reddit User Agent
-// Line 3: Reddit Username
-// Line 4: Reddit Password
-// Line 5: Database IP
-// Line 6: Database Username
-// Line 7: Database Password
-// Line 8: Databse Name
-
 func MakeClient() *Client {
     c := &Client {
         Http_Client: &http.Client{ Timeout: time.Second * 10, },

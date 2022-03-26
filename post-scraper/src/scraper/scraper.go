@@ -4,7 +4,7 @@ import (
     "net/http"
     "net/url"
     "io/ioutil"
-    "encoding/json"
+//    "encoding/json"
     "skunz42/post-scraper/src/credentials"
     "skunz42/post-scraper/src/database"
     "fmt"
@@ -17,15 +17,12 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
     posts := make([]database.Post, 0)
     authors := make([]database.Author, 0)
 
-    //TODO remove
-    return posts, authors
-
     for city := range(ALL_SUBS) {
         fmt.Println("Fetching: " + ALL_SUBS[city])
         sub_endpoint_url := "https://oauth.reddit.com/r/" + ALL_SUBS[city] + "/new"
 
         url_params := url.Values{}
-        url_params.Add("limit", "50")
+        url_params.Add("limit", "1")
 
         req, _ := http.NewRequest("GET", sub_endpoint_url + "?" + url_params.Encode(), nil)
         req.Header.Set("Authorization", "bearer " + c.Access_Token)
@@ -35,8 +32,9 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
         defer res.Body.Close()
 
         body, _ := ioutil.ReadAll(res.Body)
+        print(string(body))
 
-        var rr map[string]interface{}
+        /*var rr map[string]interface{}
 
         json.Unmarshal(body, &rr)
 
@@ -57,7 +55,7 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
 
             posts = append(posts, post_struct)
             authors = append(authors, author_struct)
-        }
+        }*/
 
     }
     return posts, authors

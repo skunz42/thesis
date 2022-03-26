@@ -15,7 +15,7 @@ func MakeClient() *Client {
     setClientId(os.Getenv("REDDIT_CLIENT_ID"), c)
     setClientSecret(os.Getenv("REDDIT_CLIENT_SECRET"), c)
     setUserAgent(os.Getenv("REDDIT_USER_AGENT"), c)
-    setUsername(os.Getenv("REDDIT_USERNAME"), c)
+    setUsername(os.Getenv("REDDIT_USER_NAME"), c)
     setPassword(os.Getenv("REDDIT_PASSWORD"), c)
 
     return c

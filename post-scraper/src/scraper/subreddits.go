@@ -1,6 +1,6 @@
 package scraper
 
-/*var ALL_SUBS = [...]string {
+var ALL_SUBS = [...]string {
     "abilene",
     "akron",
     "albanyga",
@@ -385,6 +385,4 @@ package scraper
     "youngstown",
     "yubacity",
     "yuma",
-}*/
-
-var ALL_SUBS = [...]string {"binghamton"}
+}

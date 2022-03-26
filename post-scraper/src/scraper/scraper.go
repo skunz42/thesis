@@ -4,7 +4,7 @@ import (
     "net/http"
     "net/url"
     "io/ioutil"
-//    "encoding/json"
+    "encoding/json"
     "skunz42/post-scraper/src/credentials"
     "skunz42/post-scraper/src/database"
     "fmt"
@@ -14,7 +14,7 @@ import (
 // Return a list of ids and a list of json blobs
 func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
 
-    posts := make([]database.Post, 0)
+    user_posts := make([]database.Post, 0)
     authors := make([]database.Author, 0)
 
     for city := range(ALL_SUBS) {
@@ -22,7 +22,7 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
         sub_endpoint_url := "https://oauth.reddit.com/r/" + ALL_SUBS[city] + "/new"
 
         url_params := url.Values{}
-        url_params.Add("limit", "1")
+        url_params.Add("limit", "50")
 
         req, _ := http.NewRequest("GET", sub_endpoint_url + "?" + url_params.Encode(), nil)
         req.Header.Set("Authorization", "bearer " + c.Access_Token)
@@ -32,9 +32,8 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
         defer res.Body.Close()
 
         body, _ := ioutil.ReadAll(res.Body)
-        print(string(body))
 
-        /*var rr map[string]interface{}
+        var rr map[string]interface{}
 
         json.Unmarshal(body, &rr)
 
@@ -50,13 +49,19 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
             author := posts[i].(map[string]interface{})["data"].(map[string]interface{})["author"]
             post_id := posts[i].(map[string]interface{})["data"].(map[string]interface{})["id"]
 
-            post_struct := database.Post{Id: post_id.(string), Blob: data}
-            author_struct := database.Author{Username: author.(string), Fullname: author_fullname.(string)}
+            post_id_str, ok1 := post_id.(string)
+            author_str, ok2 := author.(string)
+            author_fullname_str, ok3 := author_fullname.(string)
 
-            posts = append(posts, post_struct)
-            authors = append(authors, author_struct)
-        }*/
+            if ok1 && ok2 && ok3 {
+                post_struct := database.Post{Id: post_id_str, Blob: data}
+                author_struct := database.Author{Username: author_str, Fullname: author_fullname_str}
+
+                user_posts = append(user_posts, post_struct)
+                authors = append(authors, author_struct)
+            }
+        }
 
     }
-    return posts, authors
+    return user_posts, authors
 }

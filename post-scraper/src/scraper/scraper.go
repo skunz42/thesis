@@ -18,7 +18,7 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
     authors := make([]database.Author, 0)
 
     for city := range(ALL_SUBS) {
-        fmt.Println("Fetching: " + ALL_SUBS[city])
+//        fmt.Println("Fetching: " + ALL_SUBS[city])
         sub_endpoint_url := "https://oauth.reddit.com/r/" + ALL_SUBS[city] + "/new"
 
         url_params := url.Values{}
@@ -37,7 +37,13 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
 
         json.Unmarshal(body, &rr)
 
-        posts := rr["data"].(map[string]interface{})["children"].([]interface{})
+        posts, ok := rr["data"].(map[string]interface{})["children"].([]interface{})
+        tries := 3
+        if !ok && tries > 0 {
+            fmt.Println("Connection to Reddit failed. Retrying...")
+            tries -= 1
+            //Implement retry if have the time
+        }
 
         for i := range(posts) {
             data, err := json.Marshal(posts[i].(map[string]interface{})["data"])
@@ -61,7 +67,7 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
                 authors = append(authors, author_struct)
             }
         }
-
     }
+    fmt.Println("Done scraping :^)")
     return user_posts, authors
 }

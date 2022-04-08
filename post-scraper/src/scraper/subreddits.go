@@ -317,7 +317,7 @@ var ALL_SUBS = [...]string {
     "santarosa",
     "savannah",
     "scranton",
-    "seattle",
+    "seattlewa",
     "verobeach",
     "sebring",
     "sheboygan",

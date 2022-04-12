@@ -37,6 +37,11 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
 
         json.Unmarshal(body, &rr)
 
+        if rr == nil {
+            fmt.Println("nil response. continuing...")
+            continue
+        }
+
         posts, ok := rr["data"].(map[string]interface{})["children"].([]interface{})
         tries := 3
         if !ok && tries > 0 {

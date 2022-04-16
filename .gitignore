@@ -2,3 +2,4 @@
 *.swp
 creds.txt
 scripts/
+post-scraper/env.list

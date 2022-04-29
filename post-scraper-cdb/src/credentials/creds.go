@@ -4,6 +4,7 @@ import (
     "net/http"
     "time"
     "os"
+    "strconv"
 )
 
 func MakeClient() *Client {
@@ -30,6 +31,8 @@ func MakeDbClient() *DbClient {
     setDbUsername(os.Getenv("DB_USERNAME"), c)
     setDbPassword(os.Getenv("DB_PASSWORD"), c)
     setDbName(os.Getenv("DB_NAME"), c)
+    port, _ := strconv.Atoi(os.Getenv("DB_PORT"))
+    setDbPort(port, c)
 
     return c
 }

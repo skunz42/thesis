@@ -3,14 +3,14 @@ package credentials
 import "fmt"
 
 type DbClient struct {
-    Port int32
+    Port int
     Host string
     Db_Username string
     db_password string
     Db_Name string
 }
 
-func setDbPort(port int32, c *DbClient) {
+func setDbPort(port int, c *DbClient) {
     c.Port = port
 }
 

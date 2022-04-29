@@ -3,3 +3,4 @@
 creds.txt
 scripts/
 post-scraper/env.list
+post-scraper-cdb/env.list

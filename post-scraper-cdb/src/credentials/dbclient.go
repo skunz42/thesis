@@ -31,9 +31,8 @@ func setDbName(dbname string, c *DbClient) {
 }
 
 func ConstructDbConnString(c *DbClient) (string) {
-    psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
-        "password=%s dbname=%s sslmode=disable",
-        c.Host, c.Port, c.Db_Username, c.db_password, c.Db_Name)
+    psqlInfo := fmt.Sprintf("postgres://%s:%s@%s:%d/%s",
+        c.Db_Username, c.db_password, c.Host, c.Port, c.Db_Name)
 
     return psqlInfo
 }

@@ -18,16 +18,17 @@ func main() {
     auth.GetToken(config_data)
 
     // Fetch posts from reddit
-//    posts, authors := scraper.GetSubPosts(config_data)
-    posts, _ := scraper.GetSubPosts(config_data)
+    posts, authors := scraper.GetSubPosts(config_data)
 
     // Ping DB
     get_ping := database.PingDB(database_data)
 
     // If the ping is successful
-    if get_ping {
-//        database.WriteAuthors(database_data, authors)
-        database.WritePosts(database_data, posts)
+    if get_ping != nil {
+        database.WriteAuthors(database_data, authors, get_ping)
+        fmt.Println("wrote authors")
+        database.WritePosts(database_data, posts, get_ping)
+        fmt.Println("wrote posts")
 //        fmt.Println("cool, swag")
     } else {
         fmt.Println("Could not ping database")

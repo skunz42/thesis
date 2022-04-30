@@ -2,7 +2,7 @@ package scraper
 
 var ALL_SUBS = [...]string {
     "abilene",
-    /*"akron",
+    "akron",
     "albanyga",
     "albanyor",
     "albany",
@@ -383,6 +383,6 @@ var ALL_SUBS = [...]string {
     "yakima",
     "yorkpa",
     "youngstown",
-    "yubacity",*/
+    "yubacity",
     "yuma",
 }

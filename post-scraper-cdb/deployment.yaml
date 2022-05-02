@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skunz-reddit-scraper
+  namespace: skunz1
+spec:
+# we will try 1 replicas... this will have some issues with early cache hits
+# and could also cause issues with rate limits (because each replica keeps track of its)
+# own rate limit, but yolo
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skunz-reddit-scraper
+  template:
+    metadata:
+      labels:
+        app: skunz-reddit-scraper
+    spec:
+      containers:
+      - name: scrape-cities
+        image: ghcr.io/idramalab/skunz1/test-container
+        imagePullPolicy: Always
+        env:
+          - name: REDDIT_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: REDDIT_CLIENT_ID
+          - name: REDDIT_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: REDDIT_CLIENT_SECRET
+          - name: REDDIT_USER_AGENT
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: REDDIT_USER_AGENT
+          - name: REDDIT_USER_NAME
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: REDDIT_USER_NAME
+          - name: REDDIT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: REDDIT_PASSWORD
+          - name: DB_HOSTNAME
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: DB_HOSTNAME
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: DB_USERNAME
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: DB_PASSWORD
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: DB_NAME
+          - name: DB_PORT
+            valueFrom:
+              secretKeyRef:
+                name: common-secret
+                key: DB_PORT
+      imagePullSecrets:
+        - name: github-repository
+

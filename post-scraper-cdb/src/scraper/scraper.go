@@ -18,7 +18,7 @@ func GetSubPosts(c *credentials.Client) ([]database.Post, []database.Author) {
     authors := make([]database.Author, 0)
 
     for city := range(ALL_SUBS) {
-//        fmt.Println("Fetching: " + ALL_SUBS[city])
+        fmt.Println("Fetching: " + ALL_SUBS[city])
         sub_endpoint_url := "https://oauth.reddit.com/r/" + ALL_SUBS[city] + "/new"
 
         url_params := url.Values{}

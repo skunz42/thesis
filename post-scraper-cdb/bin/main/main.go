@@ -18,7 +18,7 @@ func main() {
         auth.GetToken(config_data)
 
         // Fetch posts from reddit
-        posts, authors := scraper.GetSubPosts(config_data)
+        posts, authors := scraper.GetSubPosts(config_data, database_data)
 
         // Ping DB
         get_ping := database.PingDB(database_data)

@@ -2,7 +2,8 @@ package database
 
 import (
     "database/sql"
-    "fmt"
+//    "fmt"
+    "log"
     "context"
     _ "github.com/lib/pq"
     "github.com/cockroachdb/cockroach-go/crdb"
@@ -20,13 +21,13 @@ func UpdateMRP(database_data *credentials.DbClient, post_id string, city string)
     psql_info := credentials.ConstructDbConnString(database_data)
     db, err := sql.Open("postgres", psql_info)
     if err != nil {
-        fmt.Println("Error on open")
+        log.Println("Error on open (UpdateMRP)")
         return err
     }
 
     err = db.Ping()
     if err != nil {
-        fmt.Println("Error on ping")
+        log.Println("Error on ping (UpdateMRP)")
         return err
     }
 
@@ -39,8 +40,8 @@ func UpdateMRP(database_data *credentials.DbClient, post_id string, city string)
     })
 
     if err != nil {
-        fmt.Println("Error updating posts to db: ")
-        fmt.Println(err)
+        log.Println("Error updating posts to db: ")
+        log.Println(err)
         return err
     }
 
@@ -51,6 +52,7 @@ func getLatestPost(sql_statement string, db *sql.DB, city string) (string, error
     rows, err := db.Query(sql_statement, city)
 
     if err != nil {
+        log.Println("getLatestPost: Error on query")
         return "EMPTY", err
     }
 
@@ -61,15 +63,17 @@ func getLatestPost(sql_statement string, db *sql.DB, city string) (string, error
     for rows.Next() {
         err = rows.Scan(&pid)
         if err != nil {
+            log.Println("getLatestPost: Error on row scan")
             return "EMPTY", err
         }
     }
     err = rows.Err()
     if err != nil {
         x := "EMPTY"
+        log.Println("getLatestPost: Error on rows")
         return x, err
     }
-    fmt.Println("pid: " + pid)
+    log.Println("PREVIOUS PID: " + pid)
     return pid, err
 }
 
@@ -77,13 +81,13 @@ func GetLatestPost(database_data *credentials.DbClient, subreddit string) (strin
     psql_info := credentials.ConstructDbConnString(database_data)
     db, err := sql.Open("postgres", psql_info)
     if err != nil {
-        fmt.Println("Error on open")
+        log.Println("Error on open")
         return "", err
     }
 
     err = db.Ping()
     if err != nil {
-        fmt.Println("Error on ping")
+        log.Println("Error on ping")
         return "", err
     }
 

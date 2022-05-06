@@ -15,6 +15,7 @@ func main() {
 
     for {
         // Get a reddit token
+        fmt.Println("=======================================================")
         auth.GetToken(config_data)
 
         // Fetch posts from reddit
@@ -35,6 +36,7 @@ func main() {
         }
 
         fmt.Println("See you in an hour :^)")
+        fmt.Println("=======================================================")
         time.Sleep(3300 * time.Second)
         fmt.Println("Waking back up")
     }

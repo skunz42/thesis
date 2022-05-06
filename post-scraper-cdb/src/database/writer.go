@@ -2,7 +2,8 @@ package database
 
 import (
     "database/sql"
-    "fmt"
+//    "fmt"
+    "log"
     "context"
     _ "github.com/lib/pq"
     "github.com/cockroachdb/cockroach-go/crdb"
@@ -15,13 +16,13 @@ func PingDB(database_data *credentials.DbClient) (*sql.DB) {
     psql_info := credentials.ConstructDbConnString(database_data)
     db, err := sql.Open("postgres", psql_info)
     if err != nil {
-        fmt.Println("Error on open")
+        log.Println("Error on open")
         return nil
     }
 
     err = db.Ping()
     if err != nil {
-        fmt.Println("Error on ping")
+        log.Println("Error on ping")
         return nil
     }
     return db
@@ -46,8 +47,8 @@ func WriteAuthors(database_data *credentials.DbClient, authors []Author, db *sql
         })
 
         if err != nil {
-            fmt.Println("Error writing authors to db: ")
-            fmt.Println(err)
+            log.Println("Error writing authors to db: ")
+            log.Println(err)
             return
         }
     }
@@ -74,8 +75,8 @@ func WritePosts(database_data *credentials.DbClient, posts []Post, db *sql.DB) {
         })
 
         if err != nil {
-            fmt.Println("Error writing posts to db: ")
-            fmt.Println(err)
+            log.Println("Error writing posts to db: ")
+            log.Println(err)
             return
         }
     }

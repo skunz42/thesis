@@ -8,6 +8,7 @@ import (
     "skunz42/post-scraper/src/credentials"
     "skunz42/post-scraper/src/database"
     "log"
+    "fmt"
 )
 
 // Get 50 most recent posts for all subs
@@ -18,6 +19,7 @@ func GetSubPosts(c *credentials.Client, d *credentials.DbClient) ([]database.Pos
     authors := make([]database.Author, 0)
 
     for city := range(ALL_SUBS) {
+        fmt.Println("-----------------------------------------------------------------------------")
         log.Println("Fetching: " + ALL_SUBS[city])
         sub_endpoint_url := "https://oauth.reddit.com/r/" + ALL_SUBS[city] + "/new"
 
@@ -120,6 +122,7 @@ func GetSubPosts(c *credentials.Client, d *credentials.DbClient) ([]database.Pos
                 log.Println("INVALID FORMATTING")
             }
         }
+        fmt.Println("-----------------------------------------------------------------------------")
     }
 
     log.Println("Done scraping :^)")

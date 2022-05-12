@@ -18,6 +18,7 @@
  robbe+
  shot+
  shoot+
+ shove+
  stab
  stabb+
  standoff

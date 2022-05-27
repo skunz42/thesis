@@ -1,4 +1,5 @@
 import os
+import psycopg2
 from elasticsearch import Elasticsearch
 
 es = Elasticsearch(
@@ -9,3 +10,12 @@ es = Elasticsearch(
 
 resp = es.info()
 print(resp)
+
+conn = psycopg2.connect(
+    host=os.environ['PG_HOST'],
+    database=os.environ['PG_NAME'],
+    user=os.environ['PG_USERNAME'],
+    password=os.environ['PG_PASSWORD'],
+)
+
+print('connected to pg')

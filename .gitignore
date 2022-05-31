@@ -6,3 +6,4 @@ post-scraper/env.list
 post-scraper-cdb/env.list
 common-secret-prod.yaml
 es/pg2es.sh
+es/logs*

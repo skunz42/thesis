@@ -7,7 +7,7 @@
  carjack+
  crim+
  harass+
- homeless
+ homeless+
  homicide
  kill+
  molest+

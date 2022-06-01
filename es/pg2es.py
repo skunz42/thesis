@@ -39,24 +39,30 @@ for row in rows:
         'author_fullname': data['author_fullname'],
         'subreddit_name_prefixed': data['subreddit_name_prefixed'],
     }
+
     json_data = {
         '@timestamp': timestamp.isoformat(),
         'post_id': pid,
         'data': final_data,
         'about_crime': about_crime,
     }
-    try:
-        resp = requests.post(f"{os.environ['ES_ENDPOINT']}/reddit-posts/_create/{pid}", auth=(os.environ['ES_USERNAME'], os.environ['ES_PASSWORD']), json=json_data, timeout=5)
-    except requests.exceptions.ConnectionError as e:
-        print(f"connection timed out on {pid}")
-        continue
 
-    resp_j = resp.json()
-    try:
-        print(resp_j['error']['reason'])
-    except:
-        print(f"inserting {pid}")
-        continue
+    while True:
+        try:
+            resp = requests.post(f"{os.environ['ES_ENDPOINT']}/reddit-posts/_create/{pid}", auth=(os.environ['ES_USERNAME'], os.environ['ES_PASSWORD']), json=json_data, timeout=5)
+            if resp.status_code == 409:
+                print(f"conflict on {pid}")
+            elif resp.status_code == 404:
+                print(f"404 error on {pid}")
+                continue
+            else:
+                print(f"inserted {pid}, status: {resp.status_code}")
+            break
+        except requests.exceptions.ConnectionError as e:
+            print(f"connection timed out on {pid}")
+            continue
+
+        break
 
 
 

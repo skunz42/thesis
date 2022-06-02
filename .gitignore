@@ -7,3 +7,4 @@ post-scraper-cdb/env.list
 common-secret-prod.yaml
 es/*.sh
 es/logs*
+analysis/*.sh

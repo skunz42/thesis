@@ -9,9 +9,6 @@ with open('../data/urbanareas.csv') as csv_file:
     for row in csv_reader:
         subreddit = row[1]
 
-        if subreddit != "seattlewa":
-            continue
-
         json_data = {
             'query': {
                 'term': {

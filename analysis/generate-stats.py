@@ -29,7 +29,7 @@ def read_csv(cities):
 def populate_city_data(cities):
     for c in cities:
 
-        if c["subreddit"] != "nyc":
+        if c["subreddit"] != "seattlewa":
             continue
 
         # set political class
@@ -82,31 +82,16 @@ def populate_city_data(cities):
         # get crime post hits
         json_data = {
             'query': {
-                'bool': {
-                    'must': [
-                        {
-                            'term': {
-                                'data.subreddit': c["subreddit"]
-                            }
-                        },
-                        {
-                                        'regexp': {
-                                            'data.title': {
-                                                'value': 'shooting.*',
-                                                'flags': 'ALL',
-                                                'case_insensitive': True
-                                            },
-                                        },
-                        }
-                    ],
-                },
+                "query_string": {
+                    "query": "(data.subreddit: seattlewa) AND (data.title: shooting* OR data.url: shooting*)"
+                }
             },
             'size': 1000,
             'sort': {
                 "@timestamp": {
                     "order": "desc"
                 }
-            }
+            },
         }
 
         while True:

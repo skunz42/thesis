@@ -12,6 +12,7 @@
  kill+
  molest+
  murder+
+ punch+
  push+
  rape+
  rapist

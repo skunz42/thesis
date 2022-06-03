@@ -139,8 +139,8 @@ def populate_city_data(cities, keywords):
                     id_set.add(h['_id'])
             
             c['pcrime_hits'] = len(id_set)
-            c['pcrime_rate'] = c['pcrime_hits'] / c['total_hits']
-            print(f"{c['subreddit']}: {c['pcrime_hits']}, {100.0*c['pcrime_rate']}")
+            c['pcrime_rate'] = 100.0*c['pcrime_hits'] / c['total_hits']
+            print(f"{c['subreddit']}: {c['pcrime_hits']}, {c['pcrime_rate']}")
             break
 
 

@@ -1,6 +1,7 @@
 import os
 import requests
 import csv
+import json
 
 VERY_SMALL = 0
 SMALL = 1
@@ -26,11 +27,29 @@ def read_csv(cities):
         for row in csv_reader:
             cities.append(city_factory(row))
 
-def populate_city_data(cities):
+def write_csv(cities):
+    with open('../data/city-stats.csv', mode='w') as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+        csv_writer.writerow(["NAME", "SUBREDDIT", "ID", "POP", "DEM", "REP", "CRIME_RATE", "P_CRIME_RATE",
+            "P_CRIME_HITS", "TOTAL_HITS", "POP_CLASS", "POL_CLASS"])
+
+        for c in cities:
+            csv_writer.writerow([c['name'], c['subreddit'], c['id'], c['population'], c['dem'],
+                c['rep'], c['crime_rate'], c['pcrime_rate'], c['pcrime_hits'], c['total_hits'],
+                c['pop_class'], c['pol_class']])
+
+
+def read_keywords(keywords):
+    with open('../data/keywords.txt') as keys_file:
+        for row in keys_file:
+            keywords.append(row.rstrip())
+
+def populate_city_data(cities, keywords):
     for c in cities:
 
-        if c["subreddit"] != "seattlewa":
-            continue
+        #if c["subreddit"] != "killeen":
+        #    continue
 
         # set political class
         per_dem = 100.0 * (c["dem"]) / (c["dem"]+c["rep"])
@@ -83,7 +102,7 @@ def populate_city_data(cities):
         json_data = {
             'query': {
                 "query_string": {
-                    "query": "(data.subreddit: seattlewa) AND (data.title: shooting* OR data.url: shooting*)"
+                    "query": f"(data.subreddit: {c['subreddit']}) AND (data.title: shooting* OR data.url: shooting*)"
                 }
             },
             'size': 1000,
@@ -94,25 +113,43 @@ def populate_city_data(cities):
             },
         }
 
+        header = {}
+        headers = {'Content-Type': 'application/x-ndjson'}
+        m_search_string = ""
+
+        for k in keywords:
+            m_search_string += json.dumps(header) + '\n'
+            json_data['query']['query_string']['query'] = f"(data.subreddit: {c['subreddit']}) AND (data.title: {k} OR data.url: {k})"
+            m_search_string += json.dumps(json_data) + '\n'
+        
         while True:
             try:
-                resp = requests.get(f"{os.environ['ES_ENDPOINT']}/reddit-posts/_search?pretty",
-                    auth=(os.environ['ES_USERNAME'], os.environ['ES_PASSWORD']), timeout=5, json=json_data)
+                resp = requests.get(f"{os.environ['ES_ENDPOINT']}/reddit-posts/_msearch?pretty",
+                    auth=(os.environ['ES_USERNAME'], os.environ['ES_PASSWORD']), timeout=5, headers=headers, data=m_search_string)
                 if resp.status_code == 404:
                     continue
             except requests.exceptions.ConnectionError as e:
                 continue
 
-            for i in resp.json()['hits']['hits']:
-                print(i["_source"]["data"]["title"])
-
-            print(f"{c['name']}: {resp.json()['hits']['total']['value']}")
+            #print(f"{k}: {resp.json()['hits']['total']['value']}")
+            id_set = set()
+            for r in resp.json()['responses']:
+                #print(r['hits']['total']['value'])
+                for h in r['hits']['hits']:
+                    id_set.add(h['_id'])
+            
+            c['pcrime_hits'] = len(id_set)
+            c['pcrime_rate'] = c['pcrime_hits'] / c['total_hits']
+            print(f"{c['subreddit']}: {c['pcrime_hits']}, {100.0*c['pcrime_rate']}")
             break
 
 
 def main():
     cities = []
+    keywords = []
     read_csv(cities)
-    populate_city_data(cities)
+    read_keywords(keywords)
+    populate_city_data(cities, keywords)
+    write_csv(cities)
 
 main()

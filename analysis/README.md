@@ -18,5 +18,7 @@
 - Map for actual crime
 - Map for population
 - Map for political affiliation
+- Map for diff between reddit and real crime
 - Scatterplot for perceived crime vs size
 - Scatterplot for perceived crime vs politics
+- Scatterplot for reddit / real crime

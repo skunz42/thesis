@@ -14,6 +14,9 @@
 
 - Table for crime posts / total - highlight those with largest amount
 - Table for actual crime - highlight those with largest amount
+- Table for average crime posting based on size
+- Table for average crime posting based on politics
+- Table for diff between reddit and real crime
 - Map for perceived crime
 - Map for actual crime
 - Map for population
@@ -21,4 +24,5 @@
 - Map for diff between reddit and real crime
 - Scatterplot for perceived crime vs size
 - Scatterplot for perceived crime vs politics
-- Scatterplot for reddit / real crime
+- Scatterplot for perceived crime vs real crime
+- Scatterplot for perceived crime vs politics (large only)

@@ -48,8 +48,8 @@ def read_keywords(keywords):
 def populate_city_data(cities, keywords):
     for c in cities:
 
-        #if c["subreddit"] != "killeen":
-        #    continue
+        #if c["subreddit"] != "seattlewa":
+            #continue
 
         # set political class
         per_dem = 100.0 * (c["dem"]) / (c["dem"]+c["rep"])
@@ -141,8 +141,27 @@ def populate_city_data(cities, keywords):
             c['pcrime_hits'] = len(id_set)
             c['pcrime_rate'] = 100.0*c['pcrime_hits'] / c['total_hits']
             print(f"{c['subreddit']}: {c['pcrime_hits']}, {c['pcrime_rate']}")
-            break
 
+            bulk_update_string = ""
+
+            while len(id_set) != 0:
+                curr_id = id_set.pop()
+                updates = {'update': {"_id": curr_id, "_index": "reddit-posts"}}
+                docs = {"doc": {"about_crime": True}}
+                bulk_update_string += json.dumps(updates) + '\n'
+                bulk_update_string += json.dumps(docs) + '\n'
+
+            while True:
+                try:
+                    resp = requests.post(f"{os.environ['ES_ENDPOINT']}/reddit-posts/_bulk",
+                        auth=(os.environ['ES_USERNAME'], os.environ['ES_PASSWORD']), timeout=5, headers=headers, data=bulk_update_string)
+                    if resp.status_code == 404:
+                        continue
+                except requests.exceptions.ConnectionError as e:
+                    continue
+                break
+
+            break
 
 def main():
     cities = []

@@ -2,6 +2,7 @@ import os
 import requests
 import csv
 import json
+import sys
 
 VERY_SMALL = 0
 SMALL = 1
@@ -27,8 +28,8 @@ def read_csv(cities):
         for row in csv_reader:
             cities.append(city_factory(row))
 
-def write_csv(cities):
-    with open('../data/city-stats.csv', mode='w') as csv_file:
+def write_csv(cities, output_file_name):
+    with open(f'../data/{output_file_name}.csv', mode='w') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         csv_writer.writerow(["NAME", "SUBREDDIT", "ID", "POP", "DEM", "REP", "CRIME_RATE", "P_CRIME_RATE",
@@ -47,7 +48,6 @@ def read_keywords(keywords):
 
 def populate_city_data(cities, keywords):
     for c in cities:
-
         #if c["subreddit"] != "seattlewa":
             #continue
 
@@ -164,11 +164,15 @@ def populate_city_data(cities, keywords):
             break
 
 def main():
+    if len(sys.argv) != 2:
+        print("Input a filename for output CSV")
+        return
+
     cities = []
     keywords = []
     read_csv(cities)
     read_keywords(keywords)
     populate_city_data(cities, keywords)
-    write_csv(cities)
+    write_csv(cities, sys.argv[1])
 
 main()

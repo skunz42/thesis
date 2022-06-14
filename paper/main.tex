@@ -1,0 +1,346 @@
+\documentclass[12pt,oneside, letterpaper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{tabu}
+\usepackage{geometry}
+
+% Set margins
+\geometry
+{a4paper,
+	top=2.0in,
+	bottom=1.0in,
+	left=1.5in,
+	right=1.0in,
+	headsep=0.0in,
+	footskip=0.5in
+}
+
+% For inserting images
+\usepackage{graphicx}
+\graphicspath{ {./Images/} }
+
+% For the references
+\usepackage[sorting=none]{biblatex}
+%\addbibresource{References.bib}
+
+% Setting page numbers
+\pagestyle{plain}
+\pagenumbering{roman}
+\justifying
+
+% For making the list of abbreviations
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{List of Abbreviations}
+
+\begin{document}
+% makes the page numbers roman numerals, doesn't count
+% these pages in the table of contents
+
+
+%Begin the title page
+\begin{titlepage}
+ \begin{center}
+
+THESIS OR DISSERTATION TITLE IS CENTERED AND IN ALL CAPS.\\
+THE FIRST LINE OF THE TITLE SHOULD BE TWO INCHES FROM.\\
+THE TOP OF THE PAGE. SINGLE-SPACED.
+
+ \vspace{6.5cm} 
+ 
+BY
+
+\vspace{0.7cm}
+
+AUTHOR NAME IN ALL CAPITAL LETTERS 
+
+\vspace{0.7cm}
+
+B\textit{X}, College of University, YYYY\\
+M\textit{X}, College of University, YYYY
+ 
+\vfill 
+\vspace{0.8cm}
+ 
+SPECIFY DISSERTATION OR THESIS
+
+\vspace{0.8cm}
+
+Submitted in partial fulfillment of the requirements for\\
+the degree of Name of Degree in Major\\
+in the Graduate School of\\
+Binghamton University\\
+State University of New York\\
+YYYY
+  
+   \end{center}
+\end{titlepage}
+
+%Begin the copyright page
+\newpage
+
+\thispagestyle{empty}
+
+\vbox to 8.0truein{}
+
+\centerline{\copyright\ Copyright by Full Legal Name of Author YYYY}
+
+\
+
+\centerline{All Rights Reserved}
+
+%Begin the committee member page
+\newpage
+\addtocounter{page}{1}
+
+{\baselineskip = 10pt
+
+\vbox to 5.5truein{}
+
+\centerline{Accepted in partial fulfillment of the requirements for}
+\centerline{the degree of Name of Degree in Major}
+\centerline{in the Graduate School of}
+\centerline{Binghamton University}
+\centerline{State University of New York}
+\centerline{YYYY}
+
+\
+
+\centerline{Month DD, YYYY}
+
+\
+
+\centerline{First Name Last Name, Chair}
+\centerline{Department of XXXXXX, University Name}
+\
+
+\centerline{First Name Last Name, Faculty Advisor}
+\centerline{Department of XXXXXX, University Name}
+\
+
+\centerline{First Name Last Name, Member}
+\centerline{Department of XXXXXX, University Name}
+\
+
+\centerline{First Name Last Name, Outside Examiner}
+\centerline{Department of XXXXXX, University Name}
+}
+
+
+\newpage
+\newgeometry
+{a4paper,
+	top=1.0in,
+	bottom=1.0in,
+	left=1.5in,
+	right=1.0in,
+	headsep=0.0in,
+	footskip=0.5in
+}
+\newcommand{\chapfnt}{\fontsize{18}{18}}
+\newcommand{\secfnt}{\fontsize{14}{14}}
+\newcommand{\ssecfnt}{\fontsize{12}{12}}
+\setstretch{2.0}
+ 
+\titleformat{\chapter}[hang]
+{\normalfont\chapfnt\bfseries\centering}{\thechapter\ }{1em}{}
+\titlespacing*{\chapter}{0pt}{1in}{12pt}
+
+\titleformat{\section}
+{\normalfont\secfnt\bfseries}{\thesection}{1em}{}
+ 
+\titleformat{\subsection}
+{\normalfont\ssecfnt\bfseries}{\thesubsection}{1em}{}
+
+\chapter*{Abstract}
+\par The abstract is mandatory.
+\par The maximum acceptable length for an abstract to be published in Dissertation Abstracts International (DAI) is 350 words. The maximum acceptable length for an abstract to be published in Master’s Thesis Directories (MTD) is 150 words. However, an abstract within the dissertation or thesis need not be limited. The student may prepare a lengthy abstract for inclusion in the thesis or dissertation and a more concise summary for publication in DAI/MTD. 
+\par The abstract is expected to give a succinct account of the student's work so that a reader can quickly learn the essential contents and results. A typical abstract includes a statement of the problem, an account of procedure or methods followed, and an account of main results and conclusions.
+\par Abstracts must be prepared carefully, since they are published in DAI/MTD without editing or revision.
+
+\newpage
+
+\vbox to 4.25truein{}
+\centerline{The dedication is optional. Type your dedication here, centered on the page.}
+
+\newpage
+\begin{doublespace}
+\chapter*{Acknowledgements}
+\par The Acknowledgements section is optional. Here, type your acknowledgements. Double-space. If your style guide of choice (e.g., MLA, APA, Chicago, etc.) gives specific formatting guidelines, follow them.
+\end{doublespace}
+
+\newpage
+\begin{doublespace}
+\chapter*{Preface}
+\par The preface is optional. If necessary, the following information should be included:
+\par For previously published works, cite each published piece fully and indicate whether your studies or articles are being republished in their entirety and in the original wording, or whether they have been revised for the dissertation. Indicate that your studies or articles are being included because they were part of the programmatic line of research that comprised the dissertation and that including them provides a coherent and appropriately sequenced investigation. Describe your (the dissertation author) role in the published work. Certify that permission to republish these works in the dissertation has been obtained from the publisher or owner. 
+\par For images, identify the ones for which permission has been received by figure number and with reference to the copyright holder (whether an individual or institution) and certify that permission has been obtained. You may wish to add that all other images are in the public domain or being used under a public license or fair use. 
+\end{doublespace}
+\newpage
+
+\setstretch{1.0}
+\tableofcontents
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\chapter*{List of Abbreviations}
+Include any listing of abbreviations on this page.
+%\printnomenclature
+
+\mainmatter
+\setstretch{2.0}
+
+\chapter{Introduction}
+\par The following text is only included to take up space and provide a visual sense of the layout of your paper.   It is written in Latin for no reason other than to encourage you to bypass it as not being necessary information for you to spend your time reading.  
+\par Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+\chapter{Background and Related Work}
+\par Each chapter should begin at the top of a new page, with a two-inch top margin.\footnote{This is your first footnote, if your chosen style manual calls for footnotes rather than endnotes. \\} 
+\par Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\footnote{This is your second footnote. There should be a space, as shown, between each note (whether footnote or endnote).}
+
+\section{Media, Politics, and Perception of Crime}
+\par TODO: papers about historical media and crime, modern issues, social media effects
+
+\section{Geography}
+\par TODO: explanation of geographical terms (urban areas, MSAs, etc)
+
+\section{Reddit as Social Media}
+\par TODO: what reddit is and its role in misinformation
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[t]{0.8\textwidth}
+    \textit{Follow this list to ensure your pages are in the correct order. \\}
+	\begin{enumerate}
+	    \item Title page (mandatory)
+	    \item Copyright notice (mandatory)
+	    \item Committee page (mandatory)
+	    \item Abstract (mandatory)
+	    \item Dedication (optional)
+	    \item Acknowledgments (optional)
+	    \item Preface (optional)
+	    \item Table of contents (mandatory)
+	    \item List of tables (include list if manuscript includes tables)
+	    \item List of figures (include list if manuscript includes figures)
+	    \item List of plates (include list if manuscript includes plates)
+	    \item List of abbreviations (include if needed)
+	    \item Body of manuscript (mandatory)
+	    \item Appendix(es) (if necessary)
+	    \item Notes (include if necessary)
+	    \item Bibliography (mandatory)
+	\end{enumerate}
+	\end{minipage}
+    \caption{Sequence of pages for thesis or dissertation.}
+	\label{fig:fig-1}
+\end{figure}
+
+\begin{table}[h!]
+    \small
+    \caption{General formatting requirements for thesis or dissertation}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| m{1.25in} | m{3in} | m{0.75in} |}
+    \hline
+    \multicolumn{2}{|c|}{Formatting Requirement} & Fulfilled? \\ \hline
+    Page margins & \begin{tabular}{ll}
+        \begin{tabular}{c|c}
+        Left & 1.5" \\ \hline
+        Right & 1" \\ \hline
+        Top & 1" \\ \hline
+        Bottom & 1" \\ 
+        \end{tabular} 
+         &
+        \begin{tabular}{c}
+             {\scriptsize The 1.5” left margin } \\ 
+             {\scriptsize leaves room for the } \\
+             {\scriptsize manuscript to be bound.} 
+        \end{tabular}
+    \end{tabular} & \ \\ \hline
+    Body text of manuscript & Double-spaced. Justifying the text at the right margin is optional & \  \\ \hline
+    Font size & No smaller than 10-point and no larger than 14-point & \  \\ \hline
+    Text color & All text should be black (including URLs) & \  \\ \hline
+    New chapter & Each chapter begins at the top of a new page, with a 2” top margin & \  \\ \hline
+    Prefatory headings, chapter names and section headings & All prefatory headings, chapter names and section headings should be formatted consistently & \  \\ \hline
+    Footnotes or endnotes & Single-spaced, with a double space between each note & \  \\ \hline
+    Bibliographic entries / works cited / references & Single-spaced, with an extra space between entries. Style and format should otherwise follow the style guide used for the rest of the thesis/dissertation & \  \\ \hline
+    Long quotations & May be indented and single-spaced, though some style guides prefer them to be indented and double-spaced & \  \\ \hline
+    Tables and figures & Must conform to the same margins as the text. If the table or figure is placed in landscape orientation (horizontally on page), the margins and page-number location must retain a portrait (vertical) orientation, as on a regular page. Tables and figures may be in color & \  \\ \hline
+    Table and figure captions & Single-spaced. Should be in the same type as the body of the text & \  \\ \hline
+    Hand lettering & Not permitted. Symbols, accent marks, and equations must be typescript & \  \\ \hline
+    Corrections in pen or pencil & Not permitted. & \  \\ \hline
+    Printed manuscript & Single-sided (simplex). Do not staple. Do not hole-punch. The manuscript should be clearly readable throughout, for both electronic and printed documents. Any photocopies should be checked to make sure they are legible. If there are questions regarding print quality, you are encouraged to consult The Graduate School & \  \\ \hline
+	\end{tabular}
+	\label{table:table-1}
+\end{table}
+
+\chapter{Subreddit-level Analysis}
+
+\section{Data Overview}
+\par The subreddit-level analysis requires a variety of different data inputs. These data inputs can be divided into two major subcategories: post and comment data from Reddit itself and data that provide contextual or qualitative information.
+
+\subsection{Reddit Data}
+\par The Reddit dataset contains posts from the subreddits of the 384 MSAs of the United States as of March 2020 (REF). Appendix (REF) provides a full list of subreddits used. From this list of subreddits, we scrape and store all posts that users submit. In total, 161,166 posts were gathered between April 5, 2022 and May 31, 2022. (REF - Figure of timeline). The datastore archives posts in two formats. First, posts are written to a system of record to ensure that there is an authoritative data source that can be referenced. Second, pertinent information, such as post title and author, is extracted from the posts data stream and placed in a separate datastore.
+
+\par After storing data, an analysis tool runs to determine if a post is about crime. To do this, a regular expression checks if a post's title or a post's link's URL contains a crime-related keyword. Appendix (REF) lists the keywords used. These keywords were derived from actions that constitute violent crime and their synonyms, as well as generic crime-related words. If the regular expression returns a hit, a flag is raised in the database denoting that the post is about crime. Overall, 6,792 posts are estimated to discuss crime.
+
+\subsection{Contextual Data}
+\par A variety of data were utilized to highlight trends in the Reddit posts. One variable that subreddits are compared to is population size of the MSA (REF). These values range from a minimum of 58,639 (Carson City, NV) and a maximum of 20,140,470 (New York-Newark-Jersey City, NY-NJ-PA). MSAs are categorized into four bins based on their size: large, medium, small, and very small. The population cutoffs are 1,000,000, 500,000, and 200,000. The large population contains 56 members, the medium bin contains 54 members, the small bin contains 113 members, and the very small bin contains 161 members. Appendix (REF) contains the populations of all MSAs.
+
+\par Another variable that provides context is the political climate of an MSA. For this, we consider the results of the 2020 election (REF) in terms of the percent of the MSA voting Democrat. These values range from a minimum of 20.2\% (Morristown, TN) to a maximum of 80.9\% (Santa Cruz-Watsonville, CA). The MSAs are categorized into five bins based on their voting results: Very Conservative, Conservative, Moderate, Liberal, and Very Liberal. The percentage cutoffs for the bins are 37.5\%, 47.5\%, 52.5\%, and 62.5\%. The Very Conservative bin contains 112 members, the Conservative bin contains 103 members, the Moderate bin contains 57 members, the Liberal bin contains 73 members, and the Very Liberal bin contains 39 members. Appendix (REF) contains the voting patterns of all MSAs.
+
+\par A third variable that is considered is the documented violent crime rate of each MSA. This data is derived from the FBI's Uniform Crime Reporting statistics (REF / Footnote) \footnote{Data from the FBI mostly comes from the year that is most recent, 2019. However, not all municipalities report information, so there are slight estimations in the data (REF). Additionally, not all MSAs have documented 2019 data, so 2018 or 2017 data are used instead. The year gathered is documented in Appendix (REF)}. These values range from a minimum of 44.3/100,000 (Bangor, ME) to a maximum of 1,397.2/100,000 (Birmingham-Hoover, AL). Documented crime data is also normalized using min-max normalization so that it can be compared to a similarly normalized crime discussion value from the Reddit data. Appendix (REF) contains the documented crime rate of all MSAs.
+
+\section{Methods}
+\par TODO: talk about code design. 
+
+\section{Results}
+\par TODO: show graphs, maps, tables, etc. Discuss results in subsections
+
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{Images/BingAerial.jpg}
+    \caption{Aerial photograph of the Clock Tower, Peace Quad, and the Glenn G. Bartle Library Tower, June 16, 2009. This photograph was taken with a camera attached to a remote-controlled helicopter.}
+    \label{fig:fig-2}
+\end{figure}
+
+\chapter{User-level Analysis}
+\par TODO
+
+\section{Data Overview}
+\par TODO: talk about sample of users and their data
+
+\section{Methods}
+\par TODO: talk about code design
+
+\section{Results}
+\par TODO: discuss results
+
+\chapter{Conclusion}
+
+\newpage
+\chapter*{Appendix A}
+\addcontentsline{toc}{chapter}{Appendix A}
+
+\newpage
+\chapter*{Notes}
+\addcontentsline{toc}{chapter}{Notes}
+
+\newpage
+\addcontentsline{toc}{chapter}{Bibliography/ References/ Works Cited}
+\chapter*{Bibliography/ References/ Works Cited}
+\setstretch{1.0}
+\fontsize{10}{10pt} \selectfont
+References should be single-spaced. The style and format for references should follow the style guide used for the rest of the dissertation. \newline \newline
+Put an extra space in between entries.
+
+% Remove lines 284, 287-288 and uncomment lines 291-292 while using template
+%\renewcommand{\bibname}{Bibliography/References/Works Cited}
+%\printbibliography
+
+\end{document}

@@ -242,44 +242,6 @@ Include any listing of abbreviations on this page.
 	\label{fig:fig-1}
 \end{figure}
 
-\begin{table}[h!]
-    \small
-    \caption{General formatting requirements for thesis or dissertation}
-    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
-    \begin{tabular}{| m{1.25in} | m{3in} | m{0.75in} |}
-    \hline
-    \multicolumn{2}{|c|}{Formatting Requirement} & Fulfilled? \\ \hline
-    Page margins & \begin{tabular}{ll}
-        \begin{tabular}{c|c}
-        Left & 1.5" \\ \hline
-        Right & 1" \\ \hline
-        Top & 1" \\ \hline
-        Bottom & 1" \\ 
-        \end{tabular} 
-         &
-        \begin{tabular}{c}
-             {\scriptsize The 1.5” left margin } \\ 
-             {\scriptsize leaves room for the } \\
-             {\scriptsize manuscript to be bound.} 
-        \end{tabular}
-    \end{tabular} & \ \\ \hline
-    Body text of manuscript & Double-spaced. Justifying the text at the right margin is optional & \  \\ \hline
-    Font size & No smaller than 10-point and no larger than 14-point & \  \\ \hline
-    Text color & All text should be black (including URLs) & \  \\ \hline
-    New chapter & Each chapter begins at the top of a new page, with a 2” top margin & \  \\ \hline
-    Prefatory headings, chapter names and section headings & All prefatory headings, chapter names and section headings should be formatted consistently & \  \\ \hline
-    Footnotes or endnotes & Single-spaced, with a double space between each note & \  \\ \hline
-    Bibliographic entries / works cited / references & Single-spaced, with an extra space between entries. Style and format should otherwise follow the style guide used for the rest of the thesis/dissertation & \  \\ \hline
-    Long quotations & May be indented and single-spaced, though some style guides prefer them to be indented and double-spaced & \  \\ \hline
-    Tables and figures & Must conform to the same margins as the text. If the table or figure is placed in landscape orientation (horizontally on page), the margins and page-number location must retain a portrait (vertical) orientation, as on a regular page. Tables and figures may be in color & \  \\ \hline
-    Table and figure captions & Single-spaced. Should be in the same type as the body of the text & \  \\ \hline
-    Hand lettering & Not permitted. Symbols, accent marks, and equations must be typescript & \  \\ \hline
-    Corrections in pen or pencil & Not permitted. & \  \\ \hline
-    Printed manuscript & Single-sided (simplex). Do not staple. Do not hole-punch. The manuscript should be clearly readable throughout, for both electronic and printed documents. Any photocopies should be checked to make sure they are legible. If there are questions regarding print quality, you are encouraged to consult The Graduate School & \  \\ \hline
-	\end{tabular}
-	\label{table:table-1}
-\end{table}
-
 \chapter{Subreddit-level Analysis}
 
 \section{Data Overview}
@@ -288,6 +250,8 @@ Include any listing of abbreviations on this page.
 \subsection{Reddit Data}
 \par The Reddit dataset contains posts from the subreddits of the 384 MSAs of the United States as of March 2020 (REF). Appendix (REF) provides a full list of subreddits used. From this list of subreddits, we scrape and store all posts that users submit. In total, 161,166 posts were gathered between April 5, 2022 and May 31, 2022. (REF - Figure of timeline). The datastore archives posts in two formats. First, posts are written to a system of record to ensure that there is an authoritative data source that can be referenced. Second, pertinent information, such as post title and author, is extracted from the posts data stream and placed in a separate datastore.
 
+(FIG)
+
 \par After storing data, an analysis tool runs to determine if a post is about crime. To do this, a regular expression checks if a post's title or a post's link's URL contains a crime-related keyword. Appendix (REF) lists the keywords used. These keywords were derived from actions that constitute violent crime and their synonyms, as well as generic crime-related words. If the regular expression returns a hit, a flag is raised in the database denoting that the post is about crime. Overall, 6,792 posts are estimated to discuss crime.
 
 \subsection{Contextual Data}
@@ -295,7 +259,7 @@ Include any listing of abbreviations on this page.
 
 \par Another variable that provides context is the political climate of an MSA. For this, we consider the results of the 2020 election (REF) in terms of the percent of the MSA voting Democrat. These values range from a minimum of 20.2\% (Morristown, TN) to a maximum of 80.9\% (Santa Cruz-Watsonville, CA). The MSAs are categorized into five bins based on their voting results: Very Conservative, Conservative, Moderate, Liberal, and Very Liberal. The percentage cutoffs for the bins are 37.5\%, 47.5\%, 52.5\%, and 62.5\%. The Very Conservative bin contains 112 members, the Conservative bin contains 103 members, the Moderate bin contains 57 members, the Liberal bin contains 73 members, and the Very Liberal bin contains 39 members. Appendix (REF) contains the voting patterns of all MSAs.
 
-\par A third variable that is considered is the documented violent crime rate of each MSA. This data is derived from the FBI's Uniform Crime Reporting statistics (REF / Footnote) \footnote{Data from the FBI mostly comes from the year that is most recent, 2019. However, not all municipalities report information, so there are slight estimations in the data (REF). Additionally, not all MSAs have documented 2019 data, so 2018 or 2017 data are used instead. The year gathered is documented in Appendix (REF)}. These values range from a minimum of 44.3/100,000 (Bangor, ME) to a maximum of 1,397.2/100,000 (Birmingham-Hoover, AL). Documented crime data is also normalized using min-max normalization so that it can be compared to a similarly normalized crime discussion value from the Reddit data. Appendix (REF) contains the documented crime rate of all MSAs.
+\par A third variable that is considered is the documented violent crime rate of each MSA. This data is derived from the FBI's Uniform Crime Reporting statistics (REF) \footnote{Data from the FBI mostly comes from the year that is most recent, 2019. However, not all municipalities report information, so there are slight estimations in the data (REF). Additionally, not all MSAs have documented 2019 data, so 2018 or 2017 data are used instead. The year gathered is documented in Appendix (REF)}. These values range from a minimum of 44.3/100,000 (Bangor, ME) to a maximum of 1,397.2/100,000 (Birmingham-Hoover, AL). Documented crime data is also normalized using min-max normalization so that it can be compared to a similarly normalized crime discussion value from the Reddit data. Appendix (REF) contains the documented crime rate of all MSAs.
 
 \section{Methods}
 \par We use one main scraper to gather post data from Reddit. This scraper utilizes multiple different tools to gather disparate pieces of data and place them into two datastores. This scraper prioritizes resilience to ensure that all posts are accounted for. Additionally, the scraper checks for new posts once every hour so that posts can be fetched before a user deletes them or a moderator deletes them. These communities are generally slow moving, with an average of 111 posts an hour between all 384 subreddits.
@@ -306,8 +270,106 @@ Include any listing of abbreviations on this page.
 
 \par The scraper and databases run in Docker containers. Containerization allows the tool, as well as the databases, to run in a clean, isolated environment without worrying about being choked out by other processes. Additionally, the tool-container is scheduled by Kubernetes to allow for a higher degree of availability and resilience. If something unexpected occurs and the tool goes down, it will simply be restarted by Kubernetes. Figure (REF) details the entire data scraping process.
 
+(FIG)
+
 \section{Results}
-\par TODO: show graphs, maps, tables, etc. Discuss results in subsections
+
+\subsection{Activity}
+
+\par In total, the Reddit scraper gathered 161,166 posts between 384 subreddits. Posts were collected between April 5th, 2022 to May 31, 2022. Table \ref{table:table-1} details the ten most active subreddits of those monitored. Similarly, Table \ref{table:table-2} lists the ten most active subreddits when normalized by population.
+
+\begin{table}[h!]
+    \centering
+    \small
+    \caption{Most active Metropolitan Areas}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| c | c | c |}
+    \hline
+    Metropolitan Statistical Area & Number of Posts & Population\\ \hline
+    Austin-Round Rock-Georgetown, TX & 4,084 & 2,283,371 \\ \hline
+    San Diego-Chula Vista-Carlsbad, CA & 3,265 & 3,298,634 \\ \hline
+    Boston-Cambridge-Newton, MA-NH & 3,120 & 4,941,632 \\ \hline
+    Denver-Aurora-Lakewood, CO & 2,785 & 2,963,821 \\ \hline
+    Chicago-Naperville-Elgin, IL-IN-WI & 2,673 & 9,618,502 \\ \hline
+    Sacramento-Roseville-Folsom, CA & 2,668 & 2,397,382 \\ \hline
+    Philadelphia-Camden-Wilmington, PA-NJ-DE-MD & 2,541 & 6,245,051 \\ \hline
+    Columbus, OH & 2,533 & 2,138,926 \\ \hline
+    Portland-Vancouver-Hillsboro, OR-WA & 2,526 & 2,512,859 \\ \hline
+    San Francisco-Oakland-Berkeley, CA & 2,476 & 4,749,008 \\ \hline
+	\end{tabular}
+	\label{table:table-1}
+\end{table}
+
+\par The most active MSAs by total number of posts share some common, predictable traits. First, all of the Metropolitan Areas listed have populations above 1,000,000. While expected, some notable MSAs were not included, such as New York-Newark-Jersey City, NJ-NJ-PA and Los Angeles-Long Beach-Anaheim, CA, which have populations of 20,140,470 and 13,200,998, respectfully. One possible explanation for these discrepancies is the fact that there is no uniform, consistent moderation policy among subreddits (REF). For example, some subreddits automatically filter out all posts and manually approve them, or they disallow certain types of posts (REF - nyc n chicago rules).
+
+\begin{table}[h!]
+    \centering
+    \small
+    \caption{Most active Metropolitan Areas per population}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| c | c | c |}
+    \hline
+    Metropolitan Statistical Area & Number of Posts & Population\\ \hline
+    Bellingham, WA & 1,381 & 226,847 \\ \hline
+    Bloomington, IN & 799 & 161,039 \\ \hline
+    Missoula, MT & 449 & 117,922 \\ \hline
+    Bend, OR & 660 & 198,253 \\ \hline
+    Burlington-South Burlington, VT & 546 & 171,415 \\ \hline
+    Corvallis, OR & 298 & 95,184 \\ \hline
+    Eugene-Springfield, OR & 1,183 & 382,971 \\ \hline
+    Charlottesville, VA & 638 & 221,524 \\ \hline
+    Ithaca, NY & 299 & 105,740 \\ \hline
+    Asheville, NC & 1,312 & 469,015 \\ \hline
+	\end{tabular}
+	\label{table:table-2}
+\end{table}
+
+\par The list of most active MSAs when accounting for population also have some common traits. These MSAs are generally politically liberal (REF) and have large college age populations (REF). These areas have large populations of people that fall under Reddit's main demographic (REF) and, as a result, have correspondingly active communities.
+
+\subsection{Crime Discussion}
+
+\par To first understand the relationship between certain socio-economic variables and the rate of crime discussion, we must first look at crime discussion percentages independently. Of the 161,166 posts gathered, 6,792 are determined to discuss crime by matching certain crime-related keywords to post titles and URLs. Table \ref{table:table-3} lists the Metropolitan Areas with the largest percentage of crime discussion from the total number of posts.
+
+\begin{table}[h!]
+    \centering
+    \small
+    \caption{Metropolitan Areas with most crime discussion}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| c | c | c |}
+    \hline
+    Metropolitan Statistical Area & \% Crime Posts & \# Crime Posts \\ \hline
+    Seattle-Tacoma-Bellevue, WA & 18.2 & 344 \\ \hline
+    Anniston-Oxford, AL & 15.7 & 8 \\ \hline
+    Lewiston-Auburn, ME & 15.4 & 14 \\ \hline
+    Bay City, MI & 14.0 & 7 \\ \hline
+    Lewiston, ID-WA & 13.0 & 7 \\ \hline
+    Pine Bluff, AR & 12.5 & 4 \\ \hline
+    Los Angeles-Long Beach-Anaheim, CA & 12.0 & 257 \\ \hline
+    Portland-Vancouver-Hillsboro, OR-WA & 11.4 & 287 \\ \hline
+    Rocky Mount, NC & 11.3 & 7 \\ \hline
+    Decatur, AL & 10.9 & 7 \\ \hline
+    New York-Newark-Jersey City, NY-NJ-PA & 10.7 & 196 \\ \hline
+    Flint, MI & 9.7 & 10 \\ \hline
+    Morristown, TN & 9.3 & 4 \\ \hline
+    Sumter, SC & 9.3 & 5 \\ \hline
+    Vallejo, CA & 8.8 & 9 \\ \hline
+	\end{tabular}
+	\label{table:table-3}
+\end{table}
+
+\par On a greater scale, Figure (REF) displays the cumulative distribution function of the data. The average crime discussion percentage lays at 3.5\%.
+
+(FIG)
+
+\par Furthermore, Figure (REF) displays a map of all Metropolitan Areas by the percentage of crime posts submitted to their respective subreddits. The darker the shade of green, the more posts discuss crime.
+
+(FIG)
+
+\subsection{Crime Discussion and Population}
+
+\subsection{Crime Discussion and Politics}
+
+\subsection{Crime Discussion and Documented Crime}
 
 \begin{figure}[ht]
     \includegraphics[width=\textwidth]{Images/BingAerial.jpg}
@@ -332,6 +394,12 @@ Include any listing of abbreviations on this page.
 \newpage
 \chapter*{Appendix A}
 \addcontentsline{toc}{chapter}{Appendix A}
+
+% Appendix A - Metro, subreddit, population, hits
+% Appendix B - Metro, population, pop class, Pcrime rate
+% Appendix C - Metro, percent dem, pol class, pcrime rate
+% Appendix D - Metro, normalized cr, normalized pcr
+% Appendix E - Keywords
 
 \newpage
 \chapter*{Notes}

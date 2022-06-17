@@ -357,19 +357,28 @@ Include any listing of abbreviations on this page.
 	\label{table:table-3}
 \end{table}
 
-\par Furthermore, Figure (REF) displays a map of all Metropolitan Areas by the percentage of crime posts submitted to their respective subreddits. The darker the shade of green, the more posts discuss crime. The average crime discussion percentage lays at 3.5\%.
+\par Furthermore, Figure \ref{fig:map-1} displays a map of all Metropolitan Areas by the percentage of crime posts submitted to their respective subreddits. The darker the shade of green, the more posts discuss crime. The average crime discussion percentage lays at 3.5\%.
 
-(FIG)
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{Images/PCrime.png}
+    \caption{Map of crime discussion by MSA}
+    \label{fig:map-1}
+\end{figure}
 
 \subsection{Crime Discussion and Population}
 
 \par The 384 MSAs of the United States vary greatly in terms of their actual population sizes. Once the Urban Area that makes the core of the Statistical Area reaches a population of at least 50,000, a Metropolitan Area forms in the county (or counties) that the Urban Area lies in. As a result of this definition, we break down MSAs into the four categories based on size discussed previously: very small, small, medium, and large. We use these categorizations to help explain trends in data relating to MSA population sizes.
 
-\par To identify any potential trends in the population data, we take the mean crime discussion value of each bucket category. Figure (REF) displays the average min-max normalization score for the percentage of crime discussion based on population size. Here, the very small population bucket contains 161 members with an average normalized score of 0.196, the small bucket contains 113 members with an average score of 0.173, the medium bucket contains 54 members with an average score of 0.166, and the large bucket contains 56 members with an average score of 0.260.
+\par To identify any potential trends in the population data, we take the mean crime discussion value of each bucket category. Figure \ref{fig:graph-1} displays the average min-max normalization score for the percentage of crime discussion based on population size. Here, the very small population bucket contains 161 members with an average normalized score of 0.196, the small bucket contains 113 members with an average score of 0.173, the medium bucket contains 54 members with an average score of 0.166, and the large bucket contains 56 members with an average score of 0.260.
 
-(FIG)
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/bar-population.png}
+    \caption{Comparison of discussed crime and documented crime by population}
+    \label{fig:graph-1}
+\end{figure}
 
-\par Figure (REF) provides average normalized scores for documented crime to compare trends to crime discussion. We can see that as population increases, documented crime rates gradually increase. This trend is semi-reflected in the crime discussion data. Crime discussion scores are roughly equivalent for the very small, small, and medium buckets. However, the large population bucket has a significantly higher crime discussion score than the other buckets. The large population bucket has a 6\% greater score than the medium population bucket when comparing documented crime data, but the large population bucket has a 56\% greater score than the medium population bucket when comparing crime discussion data.
+\par Figure \ref{fig:graph-1} provides average normalized scores for documented crime to compare trends to crime discussion. We can see that as population increases, documented crime rates gradually increase. This trend is semi-reflected in the crime discussion data. Crime discussion scores are roughly equivalent for the very small, small, and medium buckets. However, the large population bucket has a significantly higher crime discussion score than the other buckets. The large population bucket has a 6\% greater score than the medium population bucket when comparing documented crime data, but the large population bucket has a 56\% greater score than the medium population bucket when comparing crime discussion data.
 
 \par Figure (REF) shows a cumulative distribution function of the data by population bucket. Here, we can see that the mean large population MSA has a fairly tight distribution, while the mean very small population MSA has a more spread out distribution.
 
@@ -377,27 +386,41 @@ Include any listing of abbreviations on this page.
 
 \subsection{Crime Discussion and Politics}
 
-\par Similarly to population data, political affiliation is one possible variable that can sway crime discussion. To measure this, we look at the results of the 2020 presidential election. We consider the number of votes that the Democratic and Republic parties received as stand-ins for liberal and conservative political views, respectfully. Political affiliation of the 384 MSAs is broken down into the five categories discussed earlier: very conservative, conservative, moderate, liberal, and very liberal. Figure (REF) shows a map of the political affiliation of all Metropolitan Areas in the United States.
+\par Similarly to population data, political affiliation is one possible variable that can sway crime discussion. To measure this, we look at the results of the 2020 presidential election. We consider the number of votes that the Democratic and Republic parties received as stand-ins for liberal and conservative political views, respectfully. Political affiliation of the 384 MSAs is broken down into the five categories discussed earlier: very conservative, conservative, moderate, liberal, and very liberal. Figure \ref{fig:map-2} shows a map of the political affiliation of all Metropolitan Areas in the United States.
 
-(FIG)
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{Images/pol.png}
+    \caption{Map of 2020 Presidential Election Results by MSA}
+    \label{fig:map-2}
+\end{figure}
 
-\par In identifying trends based on politics, we follow a familiar method and take the mean crime discussion value of each political class. Figure (REF) displays the average min-max normalization score for crime discussion and reported crime for each political class. Here, the very conservative bucket contains 112 members with a mean score of 0.170, the conservative bucket contains 103 members with a mean score of 0.179, the moderate bucket contains 57 members with a mean score of 0.207, the liberal bucket contains 73 members with a mean score of 0.201, and the very liberal bucket contains 39 members with a mean score of 0.274.
+\par In identifying trends based on politics, we follow a familiar method and take the mean crime discussion value of each political class. Figure \ref{fig:graph-2} displays the average min-max normalization score for crime discussion and reported crime for each political class. Here, the very conservative bucket contains 112 members with a mean score of 0.170, the conservative bucket contains 103 members with a mean score of 0.179, the moderate bucket contains 57 members with a mean score of 0.207, the liberal bucket contains 73 members with a mean score of 0.201, and the very liberal bucket contains 39 members with a mean score of 0.274.
 
-(FIG)
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/bar-politics.png}
+    \caption{Comparison of discussed crime and documented crime by politics}
+    \label{fig:graph-2}
+\end{figure}
 
-\par When looking at crime discussion rates, we can see that more liberal cities have the highest rates of crime discussion. The very liberal class has a 32\% higher crime discussion score than the next largest value. The two conservative political classes have the lowest crime discussion scores. However, these trends are not reflected in the documented crime rate scores. Figure (REF) shows that very liberal MSAs have a lower mean documented crime rate than more conservative areas. Very liberal areas are also the only class in which the crime discussion score is higher than the reported crime rate score.
+\par When looking at crime discussion rates, we can see that more liberal cities have the highest rates of crime discussion. The very liberal class has a 32\% higher crime discussion score than the next largest value. The two conservative political classes have the lowest crime discussion scores. However, these trends are not reflected in the documented crime rate scores. Figure \ref{fig:graph-2} shows that very liberal MSAs have a lower mean documented crime rate than more conservative areas. Very liberal areas are also the only class in which the crime discussion score is higher than the reported crime rate score.
 
-(FIG)
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{Images/scatter-politics-mid-large.png}
+    \caption{Perceived crime by political leaning}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{Images/scatter-crime-mid-large.png}
+    \caption{Documented crime by political leaning}
+  \end{minipage}
+\end{figure}
 
 \par Figure (REF) shows two scatterplots: one which shows the percent crime discussion in relation to politics among medium and large sized MSAs and the other which shows the documented crime rate among the same sample group in relation to politics. The shades of the dots represent their political class. From the trendline in the data, we can see that as areas become more liberal, their crime discussion percentages increase fairly rapidly. The most conservative member of the plot, Provo-Orem, UT, did not include a single post discussing crime, while more liberal areas such as Seattle, Los Angeles, Portland, and New York City had values over 10\%. In contrast, when looking at the documented violent crime rate among large and mid-size MSAs, more liberal areas generally have lower average crime rates. MSAs that lean conservative, such as Birmingham-Hoover, AL and Kansas City, MO-KS have among the highest crime rates, as well as more politically moderate cities, such as Memphis, TN-MS-AR.
 
 \subsection{Crime Discussion and Reported Crime}
-
-\begin{figure}[ht]
-    \includegraphics[width=\textwidth]{Images/BingAerial.jpg}
-    \caption{Aerial photograph of the Clock Tower, Peace Quad, and the Glenn G. Bartle Library Tower, June 16, 2009. This photograph was taken with a camera attached to a remote-controlled helicopter.}
-    \label{fig:fig-2}
-\end{figure}
 
 \chapter{User-level Analysis}
 \par TODO

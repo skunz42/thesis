@@ -248,9 +248,13 @@ Include any listing of abbreviations on this page.
 \par The subreddit-level analysis requires a variety of different data inputs. These data inputs can be divided into two major subcategories: post and comment data from Reddit itself and data that provide contextual or qualitative information.
 
 \subsection{Reddit Data}
-\par The Reddit dataset contains posts from the subreddits of the 384 MSAs of the United States as of March 2020 (REF). Appendix (REF) provides a full list of subreddits used. From this list of subreddits, we scrape and store all posts that users submit. In total, 161,166 posts were gathered between April 5, 2022 and May 31, 2022. (REF - Figure of timeline). The datastore archives posts in two formats. First, posts are written to a system of record to ensure that there is an authoritative data source that can be referenced. Second, pertinent information, such as post title and author, is extracted from the posts data stream and placed in a separate datastore.
+\par The Reddit dataset contains posts from the subreddits of the 384 MSAs of the United States as of March 2020 (REF). Appendix (REF) provides a full list of subreddits used. From this list of subreddits, we scrape and store all posts that users submit. In total, 161,166 posts were gathered between April 5, 2022 and May 31, 2022. A timeline of this process can be seen in Figure \ref{fig:line-1}. The datastore archives posts in two formats. First, posts are written to a system of record to ensure that there is an authoritative data source that can be referenced. Second, pertinent information, such as post title and author, is extracted from the posts data stream and placed in a separate datastore.
 
-(FIG)
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{Images/timeline.png}
+    \caption{Map of crime discussion by MSA}
+    \label{fig:line-1}
+\end{figure}
 
 \par After storing data, an analysis tool runs to determine if a post is about crime. To do this, a regular expression checks if a post's title or a post's link's URL contains a crime-related keyword. Appendix (REF) lists the keywords used. These keywords were derived from actions that constitute violent crime and their synonyms, as well as generic crime-related words. If the regular expression returns a hit, a flag is raised in the database denoting that the post is about crime. Overall, 6,792 posts are estimated to discuss crime.
 
@@ -274,7 +278,7 @@ Include any listing of abbreviations on this page.
 
 \section{Results}
 
-\subsection{Activity}
+\subsection{Subreddit Activity}
 
 \par In total, the Reddit scraper gathered 161,166 posts between 384 subreddits. Posts were collected between April 5th, 2022 to May 31, 2022. Table \ref{table:table-1} details the ten most active subreddits of those monitored. Similarly, Table \ref{table:table-2} lists the ten most active subreddits when normalized by population.
 
@@ -365,7 +369,7 @@ Include any listing of abbreviations on this page.
     \label{fig:map-1}
 \end{figure}
 
-\subsection{Crime Discussion and Population}
+\subsection{Population Demographics}
 
 \par The 384 MSAs of the United States vary greatly in terms of their actual population sizes. Once the Urban Area that makes the core of the Statistical Area reaches a population of at least 50,000, a Metropolitan Area forms in the county (or counties) that the Urban Area lies in. As a result of this definition, we break down MSAs into the four categories based on size discussed previously: very small, small, medium, and large. We use these categorizations to help explain trends in data relating to MSA population sizes.
 
@@ -384,7 +388,7 @@ Include any listing of abbreviations on this page.
 
 (FIG)
 
-\subsection{Crime Discussion and Politics}
+\subsection{Political Atmosphere}
 
 \par Similarly to population data, political affiliation is one possible variable that can sway crime discussion. To measure this, we look at the results of the 2020 presidential election. We consider the number of votes that the Democratic and Republic parties received as stand-ins for liberal and conservative political views, respectfully. Political affiliation of the 384 MSAs is broken down into the five categories discussed earlier: very conservative, conservative, moderate, liberal, and very liberal. Figure \ref{fig:map-2} shows a map of the political affiliation of all Metropolitan Areas in the United States.
 
@@ -410,17 +414,19 @@ Include any listing of abbreviations on this page.
   \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Images/scatter-politics-mid-large.png}
     \caption{Perceived crime by political leaning}
+    \label{fig:scatter-1}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Images/scatter-crime-mid-large.png}
     \caption{Documented crime by political leaning}
+    \label{fig:scatter-2}
   \end{minipage}
 \end{figure}
 
-\par Figure (REF) shows two scatterplots: one which shows the percent crime discussion in relation to politics among medium and large sized MSAs and the other which shows the documented crime rate among the same sample group in relation to politics. The shades of the dots represent their political class. From the trendline in the data, we can see that as areas become more liberal, their crime discussion percentages increase fairly rapidly. The most conservative member of the plot, Provo-Orem, UT, did not include a single post discussing crime, while more liberal areas such as Seattle, Los Angeles, Portland, and New York City had values over 10\%. In contrast, when looking at the documented violent crime rate among large and mid-size MSAs, more liberal areas generally have lower average crime rates. MSAs that lean conservative, such as Birmingham-Hoover, AL and Kansas City, MO-KS have among the highest crime rates, as well as more politically moderate cities, such as Memphis, TN-MS-AR.
+\par Figures \ref{fig:scatter-1} and \ref{fig:scatter-2} show two scatterplots: one which shows the percent crime discussion in relation to politics among medium and large sized MSAs and the other which shows the documented crime rate among the same sample group in relation to politics. The shades of the dots represent their political class. From the trendline in the data, we can see that as areas become more liberal, their crime discussion percentages increase fairly rapidly. The most conservative member of the plot, Provo-Orem, UT, did not include a single post discussing crime, while more liberal areas such as Seattle, Los Angeles, Portland, and New York City had values over 10\%. In contrast, when looking at the documented violent crime rate among large and mid-size MSAs, more liberal areas generally have lower average crime rates. MSAs that lean conservative, such as Birmingham-Hoover, AL and Kansas City, MO-KS have among the highest crime rates, as well as more politically moderate cities, such as Memphis, TN-MS-AR.
 
-\subsection{Crime Discussion and Reported Crime}
+\subsection{Reported Crime}
 
 \chapter{User-level Analysis}
 \par TODO

@@ -252,7 +252,7 @@ Include any listing of abbreviations on this page.
 
 \begin{figure}[ht]
     \includegraphics[width=\textwidth]{Images/timeline.png}
-    \caption{Map of crime discussion by MSA}
+    \caption{Number of daily posts across all subreddits}
     \label{fig:line-1}
 \end{figure}
 
@@ -384,9 +384,14 @@ Include any listing of abbreviations on this page.
 
 \par Figure \ref{fig:graph-1} provides average normalized scores for documented crime to compare trends to crime discussion. We can see that as population increases, documented crime rates gradually increase. This trend is semi-reflected in the crime discussion data. Crime discussion scores are roughly equivalent for the very small, small, and medium buckets. However, the large population bucket has a significantly higher crime discussion score than the other buckets. The large population bucket has a 6\% greater score than the medium population bucket when comparing documented crime data, but the large population bucket has a 56\% greater score than the medium population bucket when comparing crime discussion data.
 
-\par Figure (REF) shows a cumulative distribution function of the data by population bucket. Here, we can see that the mean large population MSA has a fairly tight distribution, while the mean very small population MSA has a more spread out distribution.
+\par Figure \ref{fig:cdf-1} shows a cumulative distribution function of the data by population bucket. Here, we can see that the smallest value of the class of large populations is the greatest among the four classes, while its largest value is greater than all of the other classes' largest values. This relationship remains true throughout most of the distribution.
 
-(FIG)
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/cdf.png}
+    \caption{Crime discussion by MSA population class}
+    \label{fig:cdf-1}
+\end{figure}
 
 \subsection{Political Atmosphere}
 
@@ -394,7 +399,7 @@ Include any listing of abbreviations on this page.
 
 \begin{figure}[ht]
     \includegraphics[width=\textwidth]{Images/pol.png}
-    \caption{Map of 2020 Presidential Election Results by MSA}
+    \caption{Map of 2020 presidential election results by MSA}
     \label{fig:map-2}
 \end{figure}
 
@@ -403,7 +408,7 @@ Include any listing of abbreviations on this page.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{Images/bar-politics.png}
-    \caption{Comparison of discussed crime and documented crime by politics}
+    \caption{Comparison of discussed crime and documented crime by political class}
     \label{fig:graph-2}
 \end{figure}
 
@@ -427,6 +432,77 @@ Include any listing of abbreviations on this page.
 \par Figures \ref{fig:scatter-1} and \ref{fig:scatter-2} show two scatterplots: one which shows the percent crime discussion in relation to politics among medium and large sized MSAs and the other which shows the documented crime rate among the same sample group in relation to politics. The shades of the dots represent their political class. From the trendline in the data, we can see that as areas become more liberal, their crime discussion percentages increase fairly rapidly. The most conservative member of the plot, Provo-Orem, UT, did not include a single post discussing crime, while more liberal areas such as Seattle, Los Angeles, Portland, and New York City had values over 10\%. In contrast, when looking at the documented violent crime rate among large and mid-size MSAs, more liberal areas generally have lower average crime rates. MSAs that lean conservative, such as Birmingham-Hoover, AL and Kansas City, MO-KS have among the highest crime rates, as well as more politically moderate cities, such as Memphis, TN-MS-AR.
 
 \subsection{Reported Crime}
+
+\par Another factor to consider alongside crime discussion is the reported crime rate of an MSA. Higher documented crime rates can lead to increased amounts of crime discussion, as crime may affect more members of the community. To measure MSA crime rates, we use the FBI's Uniform Crime Reporting Estimates (REF). The 384 Metropolitan Areas represent a differing level of crime rates, with a high of 1397.2 from Birmingham-Hoover, AL, a low of 44.3 from Bangor, ME, and an average of 380.9 among all MSAs. Table \ref{table:table-3} displays the MSAs with the ten highest documented crime rates. In this case, crime rates are defined as the amount of violent crime per 100,000 people. Additionally, the map in Figure \ref{fig:map-3} displays the crime rate for all Metropolitan Areas.
+
+\begin{table}[h!]
+    \centering
+    \small
+    \caption{Most active Metropolitan Areas per population}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| c | c | c |}
+    \hline
+    Metropolitan Statistical Area & Crime Rate & \% Crime Discussion\\ \hline
+    Birmingham-Hoover, AL & 1,397.2 & 2.52 \\ \hline
+    Farmington, NM & 1199.8 & 1.61 \\ \hline
+    Anchorage, AK & 1194.6 & 2.36 \\ \hline
+    Kansas City, MO-KS & 1159.4 & 3.16 \\ \hline
+    Memphis, TN-MS-AR & 1120.5 & 3.43 \\ \hline
+    Winston-Salem, NC & 1073.6 & 2.32 \\ \hline
+    Albuquerque, NM & 1043.4 & 4.53 \\ \hline
+    Danville, IL & 935.7 & 0.00 \\ \hline
+    Pine Bluff, AR & 895.4 & 12.5 \\ \hline
+    Odessa, TX & 881.8 & 4.30 \\ \hline
+	\end{tabular}
+	\label{table:table-4}
+\end{table}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{Images/Crime.png}
+    \caption{Reported Crime Rate by MSA}
+    \label{fig:map-3}
+\end{figure}
+
+\par From Tables \ref{table:table-3} and \ref{table:table-4}, as well as Figures \ref{fig:map-1} and \ref{fig:map-3}, we can see that MSAs with high reported crime rates do not necessarily have high amounts of crime discussion. The same goes for MSAs with low crime rates and low amounts of crime discussion. Based on the data, crime rate does not seem to have an effect on the level of crime discussion in a community.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{Images/diff.png}
+    \caption{Reported Crime Rate by MSA}
+    \label{fig:map-4}
+\end{figure}
+
+\par Many Metropolitan Areas with high documented crime rates lie in the South and Midwest (REF). However, many these MSAs have low amounts of crime discussion. To calculate the discrepancies between crime discussion and reported crime, we calculate the difference between the min-max normalized crime discussion score and the min-maxed documented crime score. Figure \ref{fig:map-4} maps this normalized difference score. Higher positive values indicate that the amount of crime discussion is higher than actual crime, while lower negative values indicate that actual crime is higher than crime discussion. MSAs in which the ratio of crime discussion and documented crime are roughly equal rest around a score of zero.
+
+\par Table \ref{table:table-5} displays the 15 highest and lowest scoring MSAs for the crime discussion to crime rate ratio. A full listing can be found in Appendix (REF). Of the highest scoring MSAs, large and very small Metropolitan Areas are over-represented, while all population sizes are represented among the lowest scoring Metropolitan Areas. When considering political affiliation, very liberal cities represent 33\% of the highest scoring MSAs while only consisting of 10\% of the total number of Metropolitan Areas. For the lowest scoring MSAs, conservative and very conservative Metropolitan Areas represent 80\% of the lowest scoring members while only making up 56\% of the total number of members.
+
+\begin{table}[h!]
+    \centering
+    \caption{General formatting requirements for thesis or dissertation}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| c | c | c | c |}
+    \hline
+    \multicolumn{2}{|c|}{Higher Score} & \multicolumn{2}{|c|}{Lower Score} \\ \hline
+    Metropolitan Area & Score & Metropolitan Area & Score \\ \hline
+    Seattle-Tacoma-Bellevue, WA & 0.743 & Birmingham-Hoover, AL & -0.861 \\ \hline
+    Lewiston, ME & 0.723 & Farmington, NM & -0.770 \\ \hline
+    Lewiston, ID-WA & 0.614 & Anchorage, AK & -0.725 \\ \hline
+    Bay City, MI & 0.496 & Danville, IL & -0.670 \\ \hline
+    Portland, OR-WA & 0.409 & Kansas City, MO-KS & -0.656 \\ \hline
+    Decatur, AL & 0.381 & Winston-Salem, NC & -0.641 \\ \hline
+    New York, NY-NJ-PA & 0.352 & Memphis, TN-MS-AR & -0.613 \\ \hline
+    Anniston, AL & 0.344 & Monroe, LA & -0.582 \\ \hline
+    Rocky Mount, NC & 0.323 & Carbondale, IL & -0.501 \\ \hline
+    Los Angeles, CA & 0.319 & Albuquerque, NM & -0.497 \\ \hline
+    St. Cloud, MN & 0.308 & Fairbanks, AK & -0.490 \\ \hline
+    Burlington, VT & 0.290 & Lubbock, TX & -0.489 \\ \hline
+    Binghamton, NY & 0.273 & Corpus Christi, TX & -0.448 \\ \hline
+    Muncie, IN & 0.262 & Jackson, TN & -0.439 \\ \hline
+    Sheboygan, WI & 0.238 & Dothan, AL & -0.431 \\ \hline
+	\end{tabular}
+	\label{table:table-5}
+\end{table}
 
 \chapter{User-level Analysis}
 \par TODO

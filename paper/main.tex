@@ -258,8 +258,10 @@ Include any listing of abbreviations on this page.
 
 \par After storing data, an analysis tool runs to determine if a post is about crime. To do this, a regular expression checks if a post's title or a post's link's URL contains a crime-related keyword. Appendix (REF) lists the keywords used. These keywords were derived from actions that constitute violent crime and their synonyms, as well as generic crime-related words. If the regular expression returns a hit, a flag is raised in the database denoting that the post is about crime. Overall, 6,792 posts are estimated to discuss crime.
 
+TODO: User Scraper stuff
+
 \subsection{Contextual Data}
-\par A variety of data were utilized to highlight trends in the Reddit posts. One variable that subreddits are compared to is population size of the MSA (REF). These values range from a minimum of 58,639 (Carson City, NV) and a maximum of 20,140,470 (New York-Newark-Jersey City, NY-NJ-PA). MSAs are categorized into four bins based on their size: large, medium, small, and very small. The population cutoffs are 1,000,000, 500,000, and 200,000. The large population contains 56 members, the medium bin contains 54 members, the small bin contains 113 members, and the very small bin contains 161 members. Appendix (REF) contains the populations of all MSAs.
+\par A variety of data were utilized to highlight trends in the Reddit posts. One variable that subreddits are compared to is population size of the MSA. These values range from a minimum of 58,639 (Carson City, NV) and a maximum of 20,140,470 (New York-Newark-Jersey City, NY-NJ-PA). MSAs are categorized into four bins based on their size: large, medium, small, and very small. The population cutoffs are 1,000,000, 500,000, and 200,000. The large population contains 56 members, the medium bin contains 54 members, the small bin contains 113 members, and the very small bin contains 161 members. Appendix (REF) contains the populations of all MSAs.
 
 \par Another variable that provides context is the political climate of an MSA. For this, we consider the results of the 2020 election (REF) in terms of the percent of the MSA voting Democrat. These values range from a minimum of 20.2\% (Morristown, TN) to a maximum of 80.9\% (Santa Cruz-Watsonville, CA). The MSAs are categorized into five bins based on their voting results: Very Conservative, Conservative, Moderate, Liberal, and Very Liberal. The percentage cutoffs for the bins are 37.5\%, 47.5\%, 52.5\%, and 62.5\%. The Very Conservative bin contains 112 members, the Conservative bin contains 103 members, the Moderate bin contains 57 members, the Liberal bin contains 73 members, and the Very Liberal bin contains 39 members. Appendix (REF) contains the voting patterns of all MSAs.
 
@@ -304,7 +306,7 @@ Include any listing of abbreviations on this page.
 	\label{table:table-1}
 \end{table}
 
-\par The most active MSAs by total number of posts share some common, predictable traits. First, all of the Metropolitan Areas listed have populations above 1,000,000. While expected, some notable MSAs were not included, such as New York-Newark-Jersey City, NJ-NJ-PA and Los Angeles-Long Beach-Anaheim, CA, which have populations of 20,140,470 and 13,200,998, respectfully. One possible explanation for these discrepancies is the fact that there is no uniform, consistent moderation policy among subreddits (REF). For example, some subreddits automatically filter out all posts and manually approve them, or they disallow certain types of posts (REF - nyc n chicago rules).
+\par The most active MSAs by total number of posts share some common, predictable traits. One shared characteristic is that all of the Metropolitan Areas listed have populations above 1,000,000. While expected, some of the most notable MSAs were not included, such as New York-Newark-Jersey City, NJ-NJ-PA and Los Angeles-Long Beach-Anaheim, CA, which have populations of 20,140,470 and 13,200,998, respectfully. One possible explanation for these exclusions is the fact that there is no uniform, consistent moderation policy among subreddits (REF). For example, some subreddits automatically filter out all posts and manually approve them, or they disallow certain types of posts (REF - nyc n chicago rules). Subreddits with more laissez-faire moderation policies will have more posts simply because they are not removing a mass of posts that could be considered redundant or irrelevant.
 
 \begin{table}[h!]
     \centering
@@ -328,7 +330,7 @@ Include any listing of abbreviations on this page.
 	\label{table:table-2}
 \end{table}
 
-\par The list of most active MSAs when accounting for population also have some common traits. These MSAs are generally politically liberal (REF) and have large college age populations (REF). These areas have large populations of people that fall under Reddit's main demographic (REF) and, as a result, have correspondingly active communities.
+\par The list of most active MSAs when normalizing by population also share some common traits. These MSAs are generally politically liberal (REF) and have large college age populations (REF). Essentially, these areas have large populations of people that fall under Reddit's main demographic (REF) and, as a result, have correspondingly active communities.
 
 \subsection{Crime Discussion}
 
@@ -382,9 +384,9 @@ Include any listing of abbreviations on this page.
     \label{fig:graph-1}
 \end{figure}
 
-\par Figure \ref{fig:graph-1} provides average normalized scores for documented crime to compare trends to crime discussion. We can see that as population increases, documented crime rates gradually increase. This trend is semi-reflected in the crime discussion data. Crime discussion scores are roughly equivalent for the very small, small, and medium buckets. However, the large population bucket has a significantly higher crime discussion score than the other buckets. The large population bucket has a 6\% greater score than the medium population bucket when comparing documented crime data, but the large population bucket has a 56\% greater score than the medium population bucket when comparing crime discussion data.
+\par From Figure \ref{fig:graph-1}, we can see that as population increases, documented crime rates gradually increase. This trend is semi-reflected in the crime discussion data. Crime discussion scores are roughly equivalent for the very small, small, and medium buckets. However, the large population bucket has a significantly higher crime discussion score than that of the other buckets. The large population bucket has a 6\% greater score than the medium population bucket when comparing documented crime data, but the large population bucket has a 56\% greater score than the medium population bucket when comparing crime discussion data.
 
-\par Figure \ref{fig:cdf-1} shows a cumulative distribution function of the data by population bucket. Here, we can see that the smallest value of the class of large populations is the greatest among the four classes, while its largest value is greater than all of the other classes' largest values. This relationship remains true throughout most of the distribution.
+\par Figure \ref{fig:cdf-1} shows a cumulative distribution function of the data by population bucket. Here, we can see that the smallest value of the class of large populations is the greatest among the four classes, while its largest value is greater than all of the other classes' largest values. This relationship remains true throughout most of the distribution, resulting in the large MSAs having the highest mean crime discussion score. When looking at the very small MSAs, we can see that some Metropolitan Areas in its category have high average crime discussion. However, a significant amount of very small MSAs have no crime discussion at all. From the CDF we can see that almost 20\% of very small MSA subreddits have not discussed crime at all. The next highest zero crime discussion class is small, with about 8\% of communities not discussing crime.
 
 \begin{figure}[ht]
     \centering
@@ -393,9 +395,11 @@ Include any listing of abbreviations on this page.
     \label{fig:cdf-1}
 \end{figure}
 
+\par When looking back at the map of crime discussion in Figure \ref{fig:map-1}, we can see that the Metropolitan Areas with the most crime discussion are not bound by population size. MSAs both small and large are represented. However, this trend is not reflected among Metropolitan Areas with the least amount of crime discussion. These areas are almost exclusively in the very small and small population buckets, with no large population MSAs being represented. Having at least some degree of crime discussion in all MSAs and significant representation in the highest scoring MSAs leads to large population Metropolitan Areas scoring the greatest average crime discussion among all population classes.
+
 \subsection{Political Atmosphere}
 
-\par Similarly to population data, political affiliation is one possible variable that can sway crime discussion. To measure this, we look at the results of the 2020 presidential election. We consider the number of votes that the Democratic and Republic parties received as stand-ins for liberal and conservative political views, respectfully. Political affiliation of the 384 MSAs is broken down into the five categories discussed earlier: very conservative, conservative, moderate, liberal, and very liberal. Figure \ref{fig:map-2} shows a map of the political affiliation of all Metropolitan Areas in the United States.
+\par Similarly to population data, political affiliation is one possible variable that can sway crime discussion. To measure this, we look at the results of the 2020 presidential election. We consider the number of votes that the Democratic and Republican parties received as stand-ins for liberal and conservative political views, respectfully. Political affiliation of the 384 MSAs is broken down into the five categories discussed earlier: very conservative, conservative, moderate, liberal, and very liberal. Figure \ref{fig:map-2} shows a map of the political affiliation of all Metropolitan Areas in the United States.
 
 \begin{figure}[ht]
     \includegraphics[width=\textwidth]{Images/pol.png}
@@ -403,7 +407,7 @@ Include any listing of abbreviations on this page.
     \label{fig:map-2}
 \end{figure}
 
-\par In identifying trends based on politics, we follow a familiar method and take the mean crime discussion value of each political class. Figure \ref{fig:graph-2} displays the average min-max normalization score for crime discussion and reported crime for each political class. Here, the very conservative bucket contains 112 members with a mean score of 0.170, the conservative bucket contains 103 members with a mean score of 0.179, the moderate bucket contains 57 members with a mean score of 0.207, the liberal bucket contains 73 members with a mean score of 0.201, and the very liberal bucket contains 39 members with a mean score of 0.274.
+\par In identifying trends based on politics, we follow a familiar method; we take the mean normalized crime discussion value and mean normalized documented crime rate of each political class. Figure \ref{fig:graph-2} displays the average min-max normalization score for crime discussion and reported crime for each political class. Here, the very conservative bucket contains 112 members with a mean score of 0.170, the conservative bucket contains 103 members with a mean score of 0.179, the moderate bucket contains 57 members with a mean score of 0.207, the liberal bucket contains 73 members with a mean score of 0.201, and the very liberal bucket contains 39 members with a mean score of 0.274.
 
 \begin{figure}[ht]
     \centering
@@ -412,7 +416,7 @@ Include any listing of abbreviations on this page.
     \label{fig:graph-2}
 \end{figure}
 
-\par When looking at crime discussion rates, we can see that more liberal cities have the highest rates of crime discussion. The very liberal class has a 32\% higher crime discussion score than the next largest value. The two conservative political classes have the lowest crime discussion scores. However, these trends are not reflected in the documented crime rate scores. Figure \ref{fig:graph-2} shows that very liberal MSAs have a lower mean documented crime rate than more conservative areas. Very liberal areas are also the only class in which the crime discussion score is higher than the reported crime rate score.
+\par When looking at Figure \ref{fig:graph-2}, we can see that among crime discussion rates, more liberal cities have the highest average scores. As the share of democratic voters increase, the average crime discussion score increases, with moderate MSAs scoring slightly higher than liberal MSAs. The very liberal class has a 32\% higher crime discussion score than the next largest score. Additionally, the two conservative political classes have the lowest mean crime discussion scores. However, these trends are not reflected in the documented crime rate scores. Figure \ref{fig:graph-2} shows that very liberal MSAs have a lower mean documented crime rate than more conservative areas, as well as the lowest mean score overall. Very liberal areas are also the only class in which the crime discussion score is higher than the reported crime rate score despite its low average documented crime.
 
 \begin{figure}[!tbp]
   \centering
@@ -430,6 +434,8 @@ Include any listing of abbreviations on this page.
 \end{figure}
 
 \par Figures \ref{fig:scatter-1} and \ref{fig:scatter-2} show two scatterplots: one which shows the percent crime discussion in relation to politics among medium and large sized MSAs and the other which shows the documented crime rate among the same sample group in relation to politics. The shades of the dots represent their political class. From the trendline in the data, we can see that as areas become more liberal, their crime discussion percentages increase fairly rapidly. The most conservative member of the plot, Provo-Orem, UT, did not include a single post discussing crime, while more liberal areas such as Seattle, Los Angeles, Portland, and New York City had values over 10\%. In contrast, when looking at the documented violent crime rate among large and mid-size MSAs, more liberal areas generally have lower average crime rates. MSAs that lean conservative, such as Birmingham-Hoover, AL and Kansas City, MO-KS have among the highest crime rates, as well as more politically moderate cities, such as Memphis, TN-MS-AR.
+
+\par When considering the data, we can see a strong relationship between how liberal a Metropolitan Area votes to how high its average crime discussion lies. Despite having lower than average documented crime, very liberal Metropolitan Areas have the highest crime discussion rates.
 
 \subsection{Reported Crime}
 
@@ -457,6 +463,8 @@ Include any listing of abbreviations on this page.
 	\label{table:table-4}
 \end{table}
 
+\par Table \ref{table:table-4} represents a diverse group of Metropolitan Areas in regards to population, politics, and crime discussion rates. Populations range from very small MSAs to large MSAs. Most of the MSAs lean conservative, but there are some liberal cities included, such as Albuquerque, NM. Additionally, a wide array of crime discussion percentages are noted, including Danville, IL at a low of 0\% and Pine Bluff, AR at a high of 12.5\%.
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{Images/Crime.png}
@@ -464,7 +472,7 @@ Include any listing of abbreviations on this page.
     \label{fig:map-3}
 \end{figure}
 
-\par From Tables \ref{table:table-3} and \ref{table:table-4}, as well as Figures \ref{fig:map-1} and \ref{fig:map-3}, we can see that MSAs with high reported crime rates do not necessarily have high amounts of crime discussion. The same goes for MSAs with low crime rates and low amounts of crime discussion. Based on the data, crime rate does not seem to have an effect on the level of crime discussion in a community.
+\par From Tables \ref{table:table-3} and \ref{table:table-4}, as well as Figures \ref{fig:map-1} and \ref{fig:map-3}, we can see that MSAs with high reported crime rates do not necessarily have high amounts of crime discussion. This includes Metropolitan Areas such as Danville, IL and Farmington, NM. The same goes for MSAs with low crime rates and low amounts of crime discussion. New York-Newark-Jersey City, NY-NJ-PA and Seattle-Tacoma-Bellevue, WA have significantly higher normalized crime discussion rates than normalized documented crime rates.
 
 \begin{figure}[ht]
     \centering
@@ -473,7 +481,7 @@ Include any listing of abbreviations on this page.
     \label{fig:map-4}
 \end{figure}
 
-\par Many Metropolitan Areas with high documented crime rates lie in the South and Midwest (REF). However, many these MSAs have low amounts of crime discussion. To calculate the discrepancies between crime discussion and reported crime, we calculate the difference between the min-max normalized crime discussion score and the min-maxed documented crime score. Figure \ref{fig:map-4} maps this normalized difference score. Higher positive values indicate that the amount of crime discussion is higher than actual crime, while lower negative values indicate that actual crime is higher than crime discussion. MSAs in which the ratio of crime discussion and documented crime are roughly equal rest around a score of zero.
+\par From the map in Figure \ref{fig:map-3}, we can see that many Metropolitan Areas with high documented crime rates lie in the South and Midwest (REF). However, many these MSAs have low amounts of crime discussion. To calculate the discrepancies between crime discussion and reported crime, we calculate the difference between the min-max normalized crime discussion score and the min-maxed documented crime score. Figure \ref{fig:map-4} maps this normalized difference score. Higher positive values indicate that the amount of crime discussion is higher than actual crime, while lower negative values indicate that actual crime is higher than crime discussion. MSAs in which the ratio of crime discussion and documented crime are roughly equal rest around a score of zero.
 
 \par Table \ref{table:table-5} displays the 15 highest and lowest scoring MSAs for the crime discussion to crime rate ratio. A full listing can be found in Appendix (REF). Of the highest scoring MSAs, large and very small Metropolitan Areas are over-represented, while all population sizes are represented among the lowest scoring Metropolitan Areas. When considering political affiliation, very liberal cities represent 33\% of the highest scoring MSAs while only consisting of 10\% of the total number of Metropolitan Areas. For the lowest scoring MSAs, conservative and very conservative Metropolitan Areas represent 80\% of the lowest scoring members while only making up 56\% of the total number of members.
 
@@ -503,6 +511,8 @@ Include any listing of abbreviations on this page.
 	\end{tabular}
 	\label{table:table-5}
 \end{table}
+
+\par When considering the documented crime data, we can see that high documented crime rates do not necessarily lead to high crime discussion rates, and vice versa. Figure \ref{fig:map-4} and Table \ref{table:table-5} show that more liberal and larger MSAs in the Northeast and on the West Coast have higher rates of crime discussion than crime rates, while smaller, more conservative MSAs in the South and Midwest have higher crime rates than crime discussion. As a result of these differing scores, no relationship between crime discussion and reported crime rates emerges.
 
 \chapter{User-level Analysis}
 \par TODO

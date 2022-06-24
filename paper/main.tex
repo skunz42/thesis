@@ -242,7 +242,7 @@ Include any listing of abbreviations on this page.
 	\label{fig:fig-1}
 \end{figure}
 
-\chapter{Subreddit-level Analysis}
+\chapter{Analysis}
 
 \section{Data Overview}
 \par The subreddit-level analysis requires a variety of different data inputs. These data inputs can be divided into two major subcategories: post and comment data from Reddit itself and data that provide contextual or qualitative information.
@@ -278,7 +278,7 @@ TODO: User Scraper stuff
 
 (FIG)
 
-\section{Results}
+\section{Raw Results}
 
 \subsection{Subreddit Activity}
 
@@ -370,6 +370,8 @@ TODO: User Scraper stuff
     \caption{Map of crime discussion by MSA}
     \label{fig:map-1}
 \end{figure}
+
+\section{Contextual Analysis}
 
 \subsection{Population Demographics}
 
@@ -514,25 +516,25 @@ TODO: User Scraper stuff
 
 \par When considering the documented crime data, we can see that high documented crime rates do not necessarily lead to high crime discussion rates, and vice versa. Figure \ref{fig:map-4} and Table \ref{table:table-5} show that more liberal and larger MSAs in the Northeast and on the West Coast have higher rates of crime discussion than crime rates, while smaller, more conservative MSAs in the South and Midwest have higher crime rates than crime discussion. As a result of these differing scores, no relationship between crime discussion and reported crime rates emerges.
 
-\chapter{User-level Analysis}
-\par TODO
+\section{Sentiment Analysis}
 
-\section{Data Overview}
-\par TODO: talk about sample of users and their data
-
-\section{Methods}
-\par TODO: talk about code design
-
-\section{Results}
-\par TODO: discuss results
+TODO
 
 \chapter{Conclusion}
+
+\par We have discussed the nature and prevalence of crime discussion on Reddit, a social media website, as it pertains to location-based communities. To obtain the necessary data and information, we have created a highly available Reddit scraper that fetches all posts from communities that represent the 384 Metropolitan Statistical Areas of the United States. The scraper gathered 161,166 posts over a two-month time span. Of these 161,166 posts, a total of 6,792 were determined to discuss crime. 
+
+\par Through analysis of user-submitted posts, we have found that communities that represent larger Metropolitan Statistical Areas and more liberal Metropolitan Statistical Areas tend to have higher rates of crime discussion. However, there is no correlation between high documented crime rates and high crime discussion rates. Furthermore, we have found that the users that make submissions about crime are significantly more negative in their posting and commenting style than those that post about non-crime topics.
+
+\par This paper presents an alternative approach to the measurement of crime discussion and media. While there have been several notable papers examining the relationship between crime discussion and traditional media, few have bridged the gap between media, such as newspapers and television stations, and modern social media networks, such as Reddit. 
+
+\par While this paper provides a first look at the crime discussion dynamics on Reddit, there are several paths that continued research could explore. One pathway of future work on the relationship between crime discussion and social media can include a more in-depth analysis of users that post about crime. By delving deep into these users' posting histories, we can attempt to determine if there is any sort of coordinated effort to push crime discussion in certain communities. Another approach could be applying the tool and analysis used on Reddit to other social media platforms, such as Facebook or Nextdoor, to determine if this phenomenon is Reddit-specific.
 
 \newpage
 \chapter*{Appendix A}
 \addcontentsline{toc}{chapter}{Appendix A}
 
-% Appendix A - Metro, subreddit, population, hits
+% Appendix A - Metro, subreddit
 % Appendix B - Metro, population, pop class, Pcrime rate
 % Appendix C - Metro, percent dem, pol class, pcrime rate
 % Appendix D - Metro, normalized cr, normalized pcr

@@ -71,6 +71,8 @@ def get_comments(crime_poster, non_crime_poster):
 
     #print(res.json()['data']['children'][0]['data']['body'])
 
+    '''SHOULD HAVE MADE THIS A FUNCTION LMAO'''
+
     while len(crime_poster) > 0:
         author = crime_poster.pop()
         print(f'Author: {author}')
@@ -82,11 +84,13 @@ def get_comments(crime_poster, non_crime_poster):
 
         children = res.json()['data']['children']
 
-        num_crime_posts += len(children)
+        #num_crime_posts += len(children)
 
         for c in children:
-            statement = TextBlob(c['data']['body'])
-            sum_crime_posts += statement.sentiment.polarity
+            if c['data']['subreddit'] == 'nyc':
+                statement = TextBlob(c['data']['body'])
+                sum_crime_posts += statement.sentiment.polarity
+                num_crime_posts += 1
 
     print(sum_crime_posts / num_crime_posts)
     print(num_crime_posts)
@@ -104,11 +108,13 @@ def get_comments(crime_poster, non_crime_poster):
 
         children = res.json()['data']['children']
 
-        num_safe_posts += len(children)
+        #num_safe_posts += len(children)
 
         for c in children:
-            statement = TextBlob(c['data']['body'])
-            sum_safe_posts += statement.sentiment.polarity
+            if c['data']['subreddit'] == 'nyc':
+                statement = TextBlob(c['data']['body'])
+                sum_safe_posts += statement.sentiment.polarity
+                num_safe_posts += 1
 
     print(sum_safe_posts / num_safe_posts)
     print(num_safe_posts)

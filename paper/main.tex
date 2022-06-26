@@ -517,9 +517,27 @@ TODO: User Scraper stuff
 
 \par When considering the documented crime data, we can see that high documented crime rates do not necessarily lead to high crime discussion rates, and vice versa. Figure \ref{fig:map-4} and Table \ref{table:table-5} show that more liberal and larger MSAs in the Northeast and on the West Coast have higher rates of crime discussion than crime rates, while smaller, more conservative MSAs in the South and Midwest have higher crime rates than crime discussion. As a result of these differing scores, no relationship between crime discussion and reported crime rates emerges.
 
-\section{Sentiment Analysis}
+\section{Sentiment Analysis and Overlap}
 
-TODO
+\par From the data collected by our Reddit scraper, we have seen that crime discussion is widespread among the selected communities. However, while we have analyzed posts about crime, we have not yet analyzed the users that initiate this crime discussion. To do this, we have extracted all 1,197 unique posters from the 1,828 posts to \texttt{r/nyc}, the New York City subreddit. 134 of these posters have posted about crime at least once, while 1,063 have not. Seven users have posted about crime five or more times. Additionally, of the 134 crime posters, five have had their account suspended since May 31st, 2022. This accounts for 3.7\% of the crime posters. Of the 1,063 non-crime posters, 27 have had their accounts suspended, or 2.5\%. After fetching the unique users, we gathered posts and comments from their user history. In total, 11,926 comments and posts were gathered from crime-posting users, while 87,658 comments and posts were gathered from non-crime-posting users.
+
+\par One method of measuring user interaction patterns is through performing sentiment analysis on post and comment data. In this case, we measure the mean polarity score of users who post about crime and compare it to the mean polarity score of users who don't post about crime. A lower polarity means that the input data is more negative, while higher scores mean that the sentiment is more positive (REF). This can indicate the potential nature of a poster; if their polarity score is low, then they are a consistently negative voice in the community. Enough negative voices can detract from a community and introduce conflict and disarray.
+
+\begin{table}[h!]
+    \centering
+    \small
+    \caption{Most active Metropolitan Areas per population}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| c | c | c |}
+    \hline
+     & Crime posters & Non-crime posters \\ \hline
+    Within \texttt{r/nyc} &  -0.07 & 0.09 \\ \hline
+    Outside of \texttt{r/nyc} & -0.07 & 0.10 \\ \hline
+	\end{tabular}
+	\label{table:table-6}
+\end{table}
+
+\par Table \ref{table:table-6} displays the results of the sentiment analysis on users that submitted a post to the New York City subreddit. Comments and posts were divided between those within \texttt{r/nyc} and those outside of the community. The sentiment of crime-posters was nearly identical within and outside of the community. These poster were more on the negative side, with neutrality laying at zero. Non-crime users were generally more positive, scoring 0.09 within the community and 0.10 outside of the community.
 
 \chapter{Conclusion}
 

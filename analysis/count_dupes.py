@@ -25,7 +25,7 @@ def get_users(crime_poster):
     hits = resp.json()['hits']['hits']
 
     for h in hits:
-        author = h['_source']['data']['author']
+        author = h['_source']['data']['subreddit']
         if h['_source']['about_crime'] == True:
             if author in crime_poster:
                 crime_poster[author] += 1

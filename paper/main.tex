@@ -210,13 +210,11 @@ US  United States
 
 \chapter{Introduction}
 
-\section{Motivation}
+\par Crime has long shaped people's lives. The fear of crime has inspired historical events (REF), shaped elections (REF), and motivated social movements (REF). While fear of crime has occurred organically throughout history, some people or groups have elevated crime cases for political or monetary gain (REF). The media is one such group that potentially seeks to gain from crime discussion. The relationship between the media and perceptions of crime has been the subject of many studies in fields such as sociology and criminology (REF). Through mediums such as television (REF) and print (REF), researchers have long analyzed how the prevalence of crime reporting might affect consumer's perceptions of public safety.
 
-\par lol
+\par While traditional media such as television and newspapers are frequently the subject of research, they have become increasingly less relevant. As traditional media declines, social media, such as Twitter, Facebook, and Reddit, has risen in its place. As a result, an increasing number of people consume news through social media (REF), which includes topics such as crime. However, social media is not without its flaws. Due to the free and open nature of who can post on social media, submissions containing misinformation (REF) and manipulation of content (REF) have remained a challenge for social media companies to reign in.
 
-\section{Outline}
-
-\par yee
+\par As social media begins to fill traditional media's niche, one might wonder how the landscape of crime reporting and discussion might change. In this work, we analyze the discussion of crime on the social media website Reddit. Specifically, we examine how crime discussion takes shape on the 384 communities, known as subreddits, that represent the Metropolitan Statistical Areas of the United States. To measure crime discussion, we have developed a Reddit scraper to fetch all of the posts from the 384 communities. We have also developed techniques to identify posts that discuss crime while minimizing false positives. We analyze the data collected by the scraper to determine a community's level of crime discussion in comparison to its population, voting patterns, and documented crime rate. Lastly, we dive into the posting histories of users who post to Reddit's New York City community to identify any further trends or patterns.
 
 \chapter{Background and Related Work}
 
@@ -224,6 +222,9 @@ US  United States
 \par TODO: papers about historical media and crime, modern issues, social media effects
 
 \section{Social Media}
+
+\subsection{Reddit}
+
 \par TODO: what reddit is and its role in misinformation. crime and social media papers
 
 \par Reddit citation test \cite{ftahmsabi}
@@ -503,9 +504,11 @@ US  United States
 
 \par When considering the documented crime data, we can see that high documented crime rates do not necessarily lead to high crime discussion rates, and vice versa. Figure \ref{fig:map-4} and Table \ref{table:table-5} show that more liberal and larger MSAs in the Northeast and on the West Coast have higher rates of crime discussion than crime rates, while smaller, more conservative MSAs in the South and Midwest have higher crime rates than crime discussion. As a result of these differing scores, no relationship between crime discussion and reported crime rates emerges.
 
-\section{Sentiment Analysis}
+\section{Sentiment Analysis and Overlap}
 
-\par From the data collected by our Reddit scraper, we have seen that crime discussion is widespread among the selected communities. However, while we have analyzed posts about crime, we have not yet analyzed the users that initiate this crime discussion. To do this, we have extracted all 1,197 unique posters from the 1,828 posts to \texttt{r/nyc}, the New York City subreddit. 134 of these posters have posted about crime at least once, while 1,063 have not. Seven users have posted about crime five or more times. Additionally, of the 134 crime posters, five have had their account suspended since May 31st, 2022. This accounts for 3.7\% of the crime posters. Of the 1,063 non-crime posters, 27 have had their accounts suspended, or 2.5\%. After fetching the unique users, we gathered posts and comments from their user history. In total, 11,926 comments and posts were gathered from crime-posting users, while 87,658 comments and posts were gathered from non-crime-posting users.
+\par From the data collected by our Reddit scraper, we have seen that crime discussion is widespread among the selected communities. However, while we have analyzed posts about crime, we have not yet analyzed the users that initiate this crime discussion. In doing so, we can potentially identify trends in the data that could highlight motivations behind crime posters or their submission patterns. We can also attempt to identify if crime posters are truly local by seeing if they overlap with other state and local subreddits. 
+
+\par To analyze users' posting histories, we extract their submission and comment data. For this work, we use posters to \texttt{r/nyc}, the New York City subreddit as a sample. We have extracted all 1,197 unique posters from the 1,828 posts to \texttt{r/nyc}. 134 of these posters have posted about crime at least once, while 1,063 have not. Seven users have posted about crime five or more times. Additionally, of the 134 crime posters, five have had their account suspended since May 31st, 2022. This accounts for 3.7\% of the crime posters. Of the 1,063 non-crime posters, 27 have had their accounts suspended, or 2.5\%. After fetching the unique users, we gathered posts and comments from their user history. In total, 11,926 comments and posts were gathered from crime-posting users, while 87,658 comments and posts were gathered from non-crime-posting users.
 
 \par One method of measuring user interaction patterns is through performing sentiment analysis on post and comment data. In this case, we measure the mean polarity score of users who post about crime and compare it to the mean polarity score of users who don't post about crime. A lower polarity means that the input data is more negative, while higher scores mean that the sentiment is more positive (REF). This can indicate the potential nature of a poster; if their polarity score is low, then they are a consistently negative voice in the community. Enough negative voices can detract from a community and introduce conflict and disarray.
 
@@ -525,6 +528,59 @@ US  United States
 
 \par Table \ref{table:table-6} displays the results of the sentiment analysis on users that submitted a post to the New York City subreddit. Comments and posts were divided between those within \texttt{r/nyc} and those outside of the community. The sentiment of crime-posters was nearly identical within and outside of the community. These poster were more on the negative side, with neutrality laying at zero. Non-crime posting users were generally more positive, scoring 0.09 within the community and 0.10 outside of the community.
 
+\par Another method of analyzing user interaction patterns is through identifying other communities that \texttt{r/nyc} members post in. This can potentially identify important posting trends. Examples include location identity and political affiliation. To measure this, we use the Jaccard Index. The Jaccard index can be defined as:
+
+(REF)
+
+\par Table \ref{table:table-7} displays the subreddits with the highest overlap for both crime and non-crime posters. Crime posters and non-crime posters alike share some common, New York City-related subreddits, such as \texttt{NYCBike}. However, crime posters have high overlap between two subreddits specifically meant to discuss crime in New York City: \texttt{CrimeInNYC} and \texttt{NYStateOfMind}.
+
+\begin{table}[h!]
+    \centering
+    \small
+    \caption{Subreddits with highest overlap by poster type}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| c | c | c | c |}
+    \hline
+    \multicolumn{2}{|c|}{Crime poster} & \multicolumn{2}{|c|}{Non-crime poster} \\ \hline
+    Subreddit & Score & Subreddit & Score\\ \hline
+    \texttt{CrimeInNYC} & 0.83 & \texttt{nycrail} & 0.81 \\ \hline
+    \texttt{Judaism} & 0.42 & \texttt{AskNYC} & 0.64 \\ \hline
+    \texttt{AskNYC} & 0.29 & \texttt{RunNYC} & 0.48 \\ \hline
+    \texttt{NYCbike} & 0.25 & \texttt{astoria} & 0.42 \\ \hline
+    \texttt{newyorkcity} & 0.21 & \texttt{Brooklyn} & 0.43 \\ \hline
+    \texttt{NYYankees} & 0.16 & \texttt{NYCBike} & 0.42 \\ \hline
+    \texttt{rangers} & 0.15 & \texttt{newyorkcity} & 0.40 \\ \hline
+    \texttt{RealTesla} & 0.14 & \texttt{jerseycity} & 0.37 \\ \hline
+    \texttt{NYStateOfMind} & 0.12 & \texttt{BostonU} & 0.33 \\ \hline
+    \texttt{GenX} & 0.11 & \texttt{Baruch} & 0.32 \\ \hline
+	\end{tabular}
+	\label{table:table-7}
+\end{table}
+
+\par From the overlap data, we can see that crime is a frequent topic of discussion even outside the \texttt{nyc} subreddit for the identified crime posters. However, the overlap with several New York City-related communities indicates that many of the crime posters have some relation to the city itself.
+
+\par While the two types of posters share some subreddits, their political community overlap is fairly different. To identify political subreddits, we derive the methodology from (REF). Table \ref{table:table-8} shows the political subreddits with the largest amount of overlap.
+
+\begin{table}[h!]
+    \centering
+    \small
+    \caption{Political subreddits with highest overlap by poster type}
+    %\begin{tabu} to 1.0\textwidth {| *{3}{c|} }
+    \begin{tabular}{| c | c | c | c |}
+    \hline
+    \multicolumn{2}{|c|}{Crime poster} & \multicolumn{2}{|c|}{Non-crime poster} \\ \hline
+    Subreddit & Score & Subreddit & Score\\ \hline
+    \texttt{neoliberal} & 0.05 & \texttt{VoteDEM} & 0.16 \\ \hline
+    \texttt{LockdownSkepticism} & 0.03 & \texttt{tuesday} & 0.10 \\ \hline
+    \texttt{Conservative} & 0.02 & \texttt{neoliberal} & 0.05 \\ \hline
+	\end{tabular}
+	\label{table:table-8}
+\end{table}
+
+\par Here, we see that the two groups diverge on political opinions. Those that post about crime trend more towards the right; \texttt{LockdownSkepticism} is a community critical of Covid-19 restrictions and \texttt{Conservative} is Reddit's largest right-leaning political community. Non-crime posters are active in politically moderate communities such as \texttt{tuesday} and \texttt{neoliberal}, as well as \texttt{VoteDem}, which supports the Democratic Party.
+
+\par From our user-level analysis, we have identified several characteristics of crime posters. First, these users are consistently more negative than non-crime posting users. They post about crime frequently, as indicated by their significant overlap with crime discussion specific communities. However, they are often local to the communities in which they post, as they have significant overlap to location specific hobby and sport communities. Lastly, those that post about crime are more active in conservative political communities than those who don't post about crime.
+
 \chapter{Conclusion}
 
 \par We have discussed the nature and prevalence of crime discussion on Reddit, a social media website, as it pertains to location-based communities. To obtain the necessary data and information, we have created a highly resilient Reddit scraper that fetches all posts from communities that represent the 384 Metropolitan Statistical Areas of the United States. The scraper gathered 161,166 posts over a two-month time span. Of these 161,166 posts, a total of 6,792 were determined to discuss crime. 
@@ -533,7 +589,7 @@ US  United States
 
 \par This paper presents an alternative approach to the measurement of crime discussion and media. While there have been several notable papers examining the relationship between crime discussion and traditional media, few have bridged the gap between media, such as newspapers and television stations, and modern social media networks, such as Reddit. 
 
-\par While this paper provides a first look at the crime discussion dynamics on Reddit, there are several paths that continued research could explore. One pathway of future work on the relationship between crime discussion and social media can include a more in-depth analysis of users that post about crime. By delving deep into these users' posting histories, we can attempt to determine if there is any sort of coordinated effort to push crime discussion in certain communities. Another approach could be applying the tool and analysis used on Reddit to other social media platforms, such as Facebook or Nextdoor, to determine if this phenomenon is Reddit-specific.
+\par While this paper provides a first look at the crime discussion dynamics on Reddit, there are several paths that continued research could explore. One pathway of future work on the relationship between crime discussion and social media could include a more in-depth analysis of users that post about crime beyond the sample that we took. Another approach could be applying the tool and analysis used on Reddit to other social media platforms, such as Facebook or Nextdoor, to determine if this phenomenon is Reddit-specific.
 
 \newpage
 \chapter*{Appendix A}

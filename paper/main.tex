@@ -158,8 +158,8 @@ YYYY
 {\normalfont\ssecfnt\bfseries}{\thesubsection}{1em}{}
 
 \chapter*{Abstract}
-\par The relationship between crime and the media is an oft studied subject. Researchers have long analyzed how the ubiquity of crime reporting in traditional media can affect how people view public safety in their communities and how factors such as population size, reported crime rates, and political affiliation can impact this trend. However, in the age of the Internet, social media has become increasingly relevant when compared to traditional media. Despite this, the level of research on crime and social media has not rivaled social media's meteoric rise.
-\par In this paper, we analyze the submission of crime-related posts to communities representing the 384 Metropolitan Areas of the United States on the social media website Reddit. We found that crime discussion is more common in larger communities and communities that lean more liberal politically, while reported crime rates do not have a strong impact.
+\par The relationship between crime and the media is an oft studied subject. Researchers have long analyzed how the ubiquity of crime reporting in traditional media can affect people's view of public safety in their communities and how various factors can impact this trend. However, in the age of the Internet, social media has become increasingly relevant when compared to traditional media. Despite this, the level of research on crime and social media has not rivaled social media's rise.
+\par In this paper, we analyze the submission of crime-related posts to communities representing the 384 Metropolitan Areas of the United States on the social media website Reddit. We find that crime discussion is more common in larger communities and communities that lean more liberal politically. Reported crime rates do not have a strong impact.
 
 \newpage
 
@@ -218,6 +218,18 @@ US  United States
 
 \chapter{Background and Related Work}
 
+\section{Geography}
+
+\subsection{Scale}
+
+\par Before we begin the gathering of the data, we must first understand the scale at which the data should be collected. First, we are collecting data that pertains to the United States. Second, in a general sense, we want to measure at a city-level scale. The city is the base-level at which a critical mass of population can support an online community; a city provides a geographic center and a name to associate with a community. However, the definition of a city is rather murky. The definition varies on a state-by-state basis due to the nature in which a state delineates county-level subdivisions. All states are broken down into counties, but differ in how counties are partitioned. For example, New York breaks down counties into towns, cities, and villages (REF), while North Dakota only subdivides counties into cities, with excluded areas remaining unincorporated (REF). In this way, we can think of city limits and city populations as somewhat arbitrary. There is no consistent, uniform definition, so cities should not be compared to each other. To equalize these differences, we use statistical area definitions provided by the United States Census Bureau.
+
+\subsection{Census Defined Statistical Areas}
+
+\par The Census Bureau provides several statistical area definitions to normalize city population and sizes. The first and most accurate definition is for Urban Areas (UAs) and Urban Clusters (UCs). UAs are dense clusters of people that house over 50,000 people. UCs are similarly measured dense clusters of people with between 2,500 and 50,000 people. UAs and UCs are computed by first identifying a dense cluster of census blocks, the smallest census geography (REF). From here, the UA or UC snakes off from the central core to include housing that fits the density requirements in less dense census blocks (REF). This process creates the ``true'' city limits, which are unaffected by municipal boundaries.
+
+\par While Urban Areas are an effective method of measuring the true sizes of cities, they are difficult to map and obtain statistics on. Their shapes are generally compact and do not have any sort of uniform, governing body. To alleviate these issues, we choose Metropolitan Statistical Areas (MSAs) as our scale. MSAs consist of the county or counties in which an Urban Area lies, alongside any counties in which 25\% of the population commutes to a core county (REF). In this way, we gain the population measurement accuracy of UAs with the ease of data access from state-defined municipalities. MSAs also lump together similar, nearby cities, such as New York, Newark, and Jersey City, to avoid redundant analysis. As of March 2020, there are 384 Metropolitan Statistical Areas, each with a corresponding Reddit community (REF).
+
 \section{Traditional Media}
 \par TODO: papers about historical media and crime, modern issues, social media effects
 
@@ -228,9 +240,6 @@ US  United States
 \par TODO: what reddit is and its role in misinformation. crime and social media papers
 
 \par Reddit citation test \cite{ftahmsabi}
-
-\section{Geography}
-\par TODO: explanation of geographical terms (urban areas, MSAs, etc)
 
 \chapter{Analysis}
 

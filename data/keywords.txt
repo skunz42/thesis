@@ -30,7 +30,7 @@ burglary
 burglaries
 burglar
 burglars
-burglaring
+burglarizing
 carjack
 carjacks
 carjacking
@@ -51,10 +51,9 @@ harasses
 harassed
 harassing
 harasser
-homeless
-homelessness
 homicide
 homicides
+homicidal
 kill
 kills
 killed
@@ -70,7 +69,7 @@ molesting
 molester
 murder
 murdered
-muerders
+murders
 murderer
 murderers
 murdering
@@ -85,6 +84,7 @@ rapist
 raping
 robs
 robbed
+robber
 robbery
 robbing
 shot
